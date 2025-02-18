@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "5fab4aa1516317565599e42e819b16af18d577cd79268b4046548fecdc7796f4",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "htran",
+      "timestamp": "2025-02-12T14:59:11Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "pid",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "wid",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "datapoint",
+        "sqlType": 7
+      }
+    ]
+  }
+}

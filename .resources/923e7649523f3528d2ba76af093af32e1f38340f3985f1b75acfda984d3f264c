@@ -1,0 +1,1449 @@
+{
+  "custom": {
+    "MobileLayout": false,
+    "PCLayout": false,
+    "isModalOpen": false,
+    "viewport": {
+      "key": 0,
+      "width": 0
+    }
+  },
+  "events": {
+    "system": {
+      "onShutdown": {
+        "config": {
+          "script": "\t\tsystem.perspective.sendMessage(\"Setpoint Popup Event Listener \", payload \u003d {\u0027isModalOpen\u0027: False})"
+        },
+        "scope": "G",
+        "type": "script"
+      },
+      "onStartup": {
+        "config": {
+          "script": "\tsystem.perspective.sendMessage(\"Setpoint Popup Event Listener \", payload \u003d {\u0027isModalOpen\u0027: True})"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "Pad": 358,
+    "WellName": "Acadia 13-12-12-6 1HX"
+  },
+  "propConfig": {
+    "custom.MobileLayout": {
+      "binding": {
+        "config": {
+          "expression": "try(if({page.props.dimensions.viewport.width}\u003c{session.custom.LayoutLimit},true,false),false)"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.PCLayout": {
+      "binding": {
+        "config": {
+          "expression": "try(if({page.props.dimensions.viewport.width}\u003e{session.custom.LayoutLimit},true,false),false)"
+        },
+        "type": "expr"
+      },
+      "onChange": {
+        "enabled": false,
+        "script": "#\tif currentValue.value \u003d\u003d True and self.getChild(\"root\").getChild(\"TopContainer\").getChild(\"DateandButtonFlexContainer\").getChild(\"ActionContainer\").getChild(\"GraphButton\").custom.key \u003d\u003d True:\n#\t\tself.getChild(\"root\").getChild(\"BaseContainer\").props.wrap \u003d \"nowrap\"\n#\telif currentValue.value \u003d\u003d True and self.getChild(\"root\").getChild(\"TopContainer\").getChild(\"DateandButtonFlexContainer\").getChild(\"ActionContainer\").getChild(\"GraphButton\").custom.key \u003d\u003d False:\n#\t\tself.getChild(\"root\").getChild(\"BaseContainer\").props.wrap \u003d \"wrap\"\n#\telif currentValue.value \u003d\u003d False and self.getChild(\"root\").getChild(\"TopContainer\").getChild(\"DateandButtonFlexContainer\").getChild(\"ActionContainer\").getChild(\"GraphButton\").custom.key \u003d\u003d True:\n#\t\tself.getChild(\"root\").getChild(\"BaseContainer\").props.wrap \u003d \"nowrap\"\n#\telif currentValue.value \u003d\u003d False and self.getChild(\"root\").getChild(\"TopContainer\").getChild(\"DateandButtonFlexContainer\").getChild(\"ActionContainer\").getChild(\"GraphButton\").custom.key \u003d\u003d Fale:\n#\t\tself.getChild(\"root\").getChild(\"BaseContainer\").props.wrap \u003d \"nowrap\""
+      },
+      "persistent": true
+    },
+    "custom.isModalOpen": {
+      "persistent": true
+    },
+    "custom.viewport": {
+      "binding": {
+        "config": {
+          "struct": {
+            "key": "{page.props.dimensions.viewport.height}",
+            "width": "{page.props.dimensions.viewport.width}"
+          },
+          "waitOnAll": true
+        },
+        "type": "expr-struct"
+      },
+      "onChange": {
+        "enabled": null,
+        "script": "\tsystem.perspective.closePopup(\u0027setpoint\u0027)\n\t\n\tif not self.custom.isModalOpen:\n\t\treturn\n\t\t\n\twidth, height \u003d 0, 0\n\tif self.view.custom.MobileLayout:\n\t\twidth \u003d self.page.props.dimensions.viewport.width * 0.9\n\t\theight \u003d self.page.props.dimensions.viewport.height * 0.9\n\telif self.page.props.dimensions.viewport.width \u003e 750 and self.page.props.dimensions.viewport.width \u003c 1400:\n\t\twidth \u003d \u0027750px\u0027\n\t\theight \u003d self.page.props.dimensions.viewport.height * 0.85\n\telse:\n\t\twidth \u003d \u00271100px\u0027\n\t\theight \u003d self.page.props.dimensions.viewport.height * 0.75\n\t\n\tPad \u003d self.getChild(\"root\").custom.Pad\n\tTagPaths \u003d self.getChild(\"root\").custom.TagPathsSetpoint\n\tWellName \u003d self.params.WellName\n\tWellType \u003d self.getChild(\"root\").custom.WellType\n\tparams \u003d {\n\t\tPad: Pad,\n\t\tTagPaths: TagPaths,\n\t\tWellName: WellName,\n\t\tWellType: WellType\n\t}\n\tsystem.perspective.openPopup(\n\t\t\"setpoint\", \n\t\t\u0027Setpoints/Setpoints (1)\u0027, \n\t\tparams \u003d params,\n\t\tmodal \u003d True,\n\t\tviewportBound \u003d True,\n\t\tdraggable \u003d False,\n\t\tposition \u003d {\u0027width\u0027: width, \u0027height\u0027: height}\n\t)"
+      },
+      "persistent": true
+    },
+    "params.Pad": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.WellName": {
+      "onChange": {
+        "enabled": null,
+        "script": "\tif currentValue.value \u003d\u003d \u0027null\u0027:\n\t\tself.getChild(\"root\").getChild(\"TopContainer\").getChild(\"FilterContainer\").getChild(\"Dropdown_Assets\").props.value \u003d \u0027null\u0027\n\t\tself.getChild(\"root\").getChild(\"TopContainer\").getChild(\"FilterContainer\").getChild(\"Dropdown_Routes\").props.value \u003d \u0027null\u0027\n\t\t\n\ttry:\n\t\tself.getChild(\"root\").getChild(\"TopContainer\").getChild(\"FilterContainer\").getChild(\"Dropdown_WellSite\").props.value \u003d self.params.WellName\n\t\t\n\t\tpayloadInfo \u003d { \"WellName\":currentValue.value ,\n\t\t\t\t\t\t\"Pad\": self.getChild(\"root\").custom.Pad}\n\t\t\t\n#\t\tsystem.perspective.sendMessage(\"sourceFilter\",payload \u003d payloadInfo, scope\u003d\"page\")\n\t\t\n\t\tsystem.perspective.sendMessage(\"DeviceInfo\",payload \u003d payloadInfo, scope\u003d\"page\")\n\texcept:\n\t\tpass\n#\t\t\n#\tfilter \u003d self.session.custom.CustomerId + \"/\" + self.custom.Pad + \"/paddata%\"\n#\tself.getChild(\"root\").custom.PadFilter \u003d  filter\n#\t\n\t"
+      },
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 978,
+      "width": 847
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Dropdown_Assets"
+                },
+                "propConfig": {
+                  "custom.key": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.value} !\u003d none,{this.props.value},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "\u0027300px\u0027\r\n//if({parent.props.direction}\u003d\u0027row\u0027, (({page.props.dimensions.viewport.width}-100)/4)+\u0027px\u0027, \u0027200px\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "designerUseLimit": false,
+                        "queryPath": "Summary/DropDownAsset"
+                      },
+                      "overlayOptOut": true,
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "dropdownOptionStyle": {
+                    "classes": "WellDetail/Dropdown"
+                  },
+                  "placeholder": {
+                    "color": "#000000",
+                    "text": "Asset..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "Project/RoundedBorder"
+                  }
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "50px",
+                  "display": false
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "/root.custom.SessionTimeLeft"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Dropdown_Routes"
+                },
+                "propConfig": {
+                  "custom.key": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.value}!\u003dnull,{this.props.value},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "\u0027300px\u0027\r\n//if({parent.props.direction}\u003d\u0027row\u0027, (({page.props.dimensions.viewport.width}-100)/4)+\u0027px\u0027, \u0027200px\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "designerUseLimit": false,
+                        "parameters": {
+                          "AssetId": "{../Dropdown_Assets.custom.key}"
+                        },
+                        "queryPath": "Summary/DropDownRoutes"
+                      },
+                      "overlayOptOut": true,
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "dropdownOptionStyle": {
+                    "classes": "WellDetail/Dropdown"
+                  },
+                  "placeholder": {
+                    "color": "#000000",
+                    "text": "Route..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "Project/RoundedBorder"
+                  }
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "Dropdown_WellSite"
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "\u0027300px\u0027\r\n//if({parent.props.direction}\u003d\u0027row\u0027, (({page.props.dimensions.viewport.width}-100)/4)+\u0027px\u0027, \u0027200px\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "designerUseLimit": false,
+                        "enableValueCache": false,
+                        "parameters": {
+                          "AlarmGroupId": "{../Dropdown_Routes.custom.key}",
+                          "AssetId": "{../Dropdown_Assets.custom.key}",
+                          "PadId": "{../Dropdown_Pads.custom.key}"
+                        },
+                        "queryPath": "Summary/DropDownWell"
+                      },
+                      "overlayOptOut": true,
+                      "type": "query"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.params.WellName"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "dropdownOptionStyle": {
+                    "classes": "WellDetail/Dropdown",
+                    "color": "#000000",
+                    "textAlign": "left"
+                  },
+                  "placeholder": {
+                    "color": "#000000",
+                    "icon": {
+                      "style": {
+                        "textAlign": "left"
+                      }
+                    },
+                    "text": "Well..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder"
+                  }
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "Dropdown_Pads",
+                  "visible": false
+                },
+                "position": {
+                  "display": false
+                },
+                "propConfig": {
+                  "custom.key": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.value}!\u003dnull,{this.props.value},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "\u0027300px\u0027\r\n//if({parent.props.direction}\u003d\u0027row\u0027, (({page.props.dimensions.viewport.width}-100)/4)+\u0027px\u0027, \u0027200px\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "designerUseLimit": false,
+                        "parameters": {
+                          "AlarmGroupId": "{../Dropdown_Routes.custom.key}",
+                          "AssetId": "{../Dropdown_Assets.custom.key}",
+                          "database": "{session.custom.DatabaseConnection}"
+                        },
+                        "queryPath": "Summary/DropDownPad"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "dropdownOptionStyle": {
+                    "classes": "WellDetail/Dropdown"
+                  },
+                  "placeholder": {
+                    "color": "#000000",
+                    "text": "Pad..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "Project/RoundedBorder"
+                  },
+                  "value": null
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "FilterContainer"
+            },
+            "position": {
+              "display": false,
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.custom.PCLayout},\"150px\",\"100px\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "if({../DateandButtonFlexContainer/ActionContainer/RealTimeButton.custom.key} \u003d True,False,True)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              },
+              "position.grow": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.custom.PCLayout},1,1)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.direction": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.custom.MobileLayout},\u0027column\u0027,\u0027row\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "StartDateLabel"
+                    },
+                    "position": {
+                      "basis": "50px"
+                    },
+                    "props": {
+                      "style": {
+                        "color": "#000000",
+                        "fontSize": 15,
+                        "fontWeight": "bold",
+                        "textAlign": "center"
+                      },
+                      "text": "Graph Start"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "startdate"
+                    },
+                    "position": {
+                      "basis": "80px",
+                      "grow": 1
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "config": {
+                            "expression": "dateArithmetic(now(0), -5, \"Day\")"
+                          },
+                          "overlayOptOut": true,
+                          "type": "expr"
+                        },
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tself.view.getChild(\"root\").custom.startDate \u003d self.props.value\n\t"
+                        }
+                      }
+                    },
+                    "props": {
+                      "format": "MM-DD-YYYY HH:mm",
+                      "formattedValue": "01-11-2025 13:35",
+                      "formattedValues": {
+                        "date": "2020-10-27"
+                      },
+                      "modalStyle": {
+                        "classes": "WellDetail/Dropdown"
+                      },
+                      "style": {
+                        "classes": "Project/RoundedBorder"
+                      }
+                    },
+                    "type": "ia.input.date-time-input"
+                  },
+                  {
+                    "meta": {
+                      "name": "StopDateLabel"
+                    },
+                    "position": {
+                      "basis": "50px"
+                    },
+                    "props": {
+                      "style": {
+                        "color": "#000000",
+                        "fontSize": 15,
+                        "fontWeight": "bold",
+                        "textAlign": "center"
+                      },
+                      "text": "Graph End"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "enddate"
+                    },
+                    "position": {
+                      "basis": "80px",
+                      "grow": 1
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "config": {
+                            "expression": "dateArithmetic(now(0), 0, \"Day\")"
+                          },
+                          "overlayOptOut": true,
+                          "type": "expr"
+                        },
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tself.view.getChild(\"root\").custom.endDate \u003d self.props.value"
+                        }
+                      }
+                    },
+                    "props": {
+                      "format": "MM-DD-YYYY HH:mm",
+                      "formattedValue": "01-16-2025 13:35",
+                      "formattedValues": {
+                        "date": "2020-11-03"
+                      },
+                      "modalStyle": {
+                        "classes": "WellDetail/Dropdown"
+                      },
+                      "style": {
+                        "classes": "Project/RoundedBorder"
+                      }
+                    },
+                    "type": "ia.input.date-time-input"
+                  }
+                ],
+                "meta": {
+                  "name": "DateContainer"
+                },
+                "position": {
+                  "basis": "50px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({../ActionContainer/RealTimeButton.custom.key} \u003d True,False,True)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "position.grow": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.custom.MobileLayout},0,1)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "justify": "flex-end",
+                  "style": {
+                    "borderColor": "#D5D5D5",
+                    "borderStyle": "none",
+                    "borderWidth": 4
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "#\tInitialize params for SetPoint Popup\n\tPad \u003d self.view.getChild(\"root\").custom.Pad\n\tTagPaths \u003d self.view.getChild(\"root\").custom.TagPathsSetpoint\n\tWellName \u003d self.view.params.WellName\n\tWellType \u003d self.view.getChild(\"root\").custom.WellType\n\tparams \u003d {\n\t\t\u0027Pad\u0027: Pad,\n\t\t\u0027TagPaths\u0027: TagPaths,\n\t\t\u0027WellName\u0027: WellName,\n\t\t\u0027WellType\u0027: WellType\n\t}\n\t\n#\tConfigure Setpoint Popup position on Mobile, tablet, and PC\n\twidth, height \u003d 0, 0\n\tif self.view.custom.MobileLayout:\n\t\twidth \u003d self.page.props.dimensions.viewport.width * 0.9\n\t\theight \u003d self.page.props.dimensions.viewport.height * 0.9\n\telif self.page.props.dimensions.viewport.width \u003e 750 and self.page.props.dimensions.viewport.width \u003c 1400:\n\t\twidth \u003d \u0027750px\u0027 if 750 \u003e self.page.props.dimensions.viewport.width * 0.9 else self.page.props.dimensions.viewport.width * 0.9\n\t\theight \u003d self.page.props.dimensions.viewport.height * 0.85\n\telse:\n\t\twidth \u003d \u00271100px\u0027\n\t\theight \u003d self.page.props.dimensions.viewport.height * 0.75\n\t\n#\tOpen popup\n\tsystem.perspective.togglePopup(\n\t\t\"setpoint\", \n\t\t\u0027Test/Setpoints/Setpoints (1)\u0027, \n\t\tparams \u003d params,\n\t\tmodal \u003d True,\n\t\tviewportBound \u003d True,\n\t\tdraggable \u003d False,\n\t\tposition \u003d {\u0027width\u0027: width, \u0027height\u0027: height}\n\t)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "SetPointButton_1",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "SetPoints"
+                      }
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({../RealTimeButton.custom.key} \u003d True,False,True) \r\n//\u0026\u0026 if({session.props.auth.user.userName} \u003d \u0027nachi\u0027, true,false)"
+                          },
+                          "enabled": false,
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "image": {
+                        "height": 35,
+                        "position": "center",
+                        "width": 45
+                      },
+                      "style": {
+                        "fontSize": 15,
+                        "fontWeight": "bold",
+                        "marginBottom": 2,
+                        "marginLeft": 5,
+                        "marginTop": 1
+                      },
+                      "text": "Set Points"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "ActionContainer"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.custom.MobileLayout},\u002750px\u0027,\u0027140px\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "justify": "center"
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "DateandButtonFlexContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.WellName} !\u003d none,true,false)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.custom.MobileLayout} ,\u0027100px\u0027,\u0027150px\u0027)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "position.grow": {
+                "binding": {
+                  "config": {
+                    "expression": "if({../DateandButtonFlexContainer/ActionContainer/RealTimeButton.custom.key} \u003d True,0,1)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.direction": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.custom.MobileLayout} ,\u0027column\u0027,\u0027row\u0027)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "alignContent": "flex-end",
+              "justify": "flex-end"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "TopContainer"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.basis": {
+            "binding": {
+              "config": {
+                "expression": "if( {view.custom.MobileLayout},\u0027210px\u0027,\u002752px\u0027)"
+              },
+              "type": "expr"
+            }
+          },
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "if({parent.custom.doneLoading},true,false)"
+              },
+              "enabled": false,
+              "type": "expr"
+            }
+          },
+          "props.direction": {
+            "binding": {
+              "config": {
+                "expression": "if({view.custom.MobileLayout},\u0027column\u0027,\u0027row\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "marginRight": 5,
+            "marginTop": 5,
+            "paddingBottom": 5,
+            "paddingLeft": 5,
+            "paddingRight": 5,
+            "paddingTop": 5
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "custom": {
+      "LastActivity": {
+        "$": [
+          "ts",
+          192,
+          1737055203865
+        ],
+        "$ts": 1737055203865
+      },
+      "Pad": "Acadia M1-13-12-6",
+      "PadFilter": "OG22/Acadia M1-13-12-6/paddata%",
+      "TagPathsSetpoint": {
+        "$": [
+          "ds",
+          192,
+          1737054695520
+        ],
+        "$columns": [
+          {
+            "data": [
+              66371,
+              92360,
+              92389,
+              66708,
+              66421,
+              87772,
+              88084,
+              66758,
+              64168,
+              64167,
+              63325,
+              64166,
+              64175,
+              63321,
+              64170,
+              64174,
+              63355,
+              63327,
+              64171,
+              64176,
+              63385,
+              64172,
+              64173,
+              116353,
+              107101,
+              107309,
+              107517,
+              108089,
+              113074,
+              63292,
+              66111,
+              106269,
+              106477,
+              106685,
+              116063,
+              65819,
+              63293,
+              65965,
+              91779,
+              91459,
+              97922,
+              63291,
+              102243,
+              102301,
+              102359,
+              102417,
+              102475,
+              102533,
+              102591,
+              102649,
+              102707,
+              102765,
+              102823,
+              102881,
+              102939,
+              102997,
+              103055,
+              103113,
+              105865,
+              105923,
+              105981,
+              106039
+            ],
+            "name": "id",
+            "type": "Integer"
+          },
+          {
+            "data": [
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/setpoints/flow rate alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/setpoints/flow rate low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/setpoints/flow rate low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/setpoints/flow rate low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/setpoints/flow rate alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/setpoints/flow rate low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/setpoints/flow rate low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/setpoints/flow rate low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/afterflow time enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/afterflow time setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/auto adj shutin or afterflow or both  setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/close time enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/close time setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/detect plunger falls",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/force close",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/force open",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/load factor function",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/load factor percentage setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/open time enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/open time setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/plunger mode",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/recovery time setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/restart plunger",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/well depth setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank high alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank high high setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank battery voltage low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank battery voltage low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank battery voltage low alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank battery voltage low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank haul setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank high alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank high high setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank low alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing high alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing high alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing high alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing high alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing low alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing high alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing high alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing high alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing high alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing low alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/wellhead battery voltage low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/wellhead battery voltage low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/wellhead battery voltage low alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/wellhead battery voltage low alarm setpoint"
+            ],
+            "name": "tagpath",
+            "type": "String"
+          }
+        ]
+      },
+      "Tagpaths": {
+        "$": [
+          "ds",
+          192,
+          1737054695520
+        ],
+        "$columns": [
+          {
+            "data": [
+              63747,
+              63748,
+              63749,
+              63750,
+              63751,
+              63752,
+              97578,
+              63733,
+              63735,
+              63737,
+              63738,
+              63739,
+              63740,
+              66371,
+              92360,
+              92389,
+              66708,
+              63404,
+              63407,
+              63406,
+              63405,
+              63409,
+              87179,
+              63403,
+              63408,
+              63807,
+              63808,
+              63809,
+              63810,
+              63811,
+              63812,
+              97480,
+              63818,
+              63820,
+              63821,
+              63822,
+              63823,
+              63824,
+              66421,
+              87772,
+              88084,
+              66758,
+              63397,
+              63400,
+              63399,
+              63398,
+              63402,
+              87182,
+              63396,
+              63401,
+              63296,
+              63299,
+              63269,
+              63270,
+              63271,
+              63272,
+              63265,
+              63266,
+              63267,
+              63268,
+              63300,
+              63301,
+              63303,
+              63302,
+              63367,
+              63386,
+              63374,
+              63369,
+              63371,
+              63370,
+              63376,
+              63375,
+              63373,
+              63372,
+              63368,
+              63377,
+              63382,
+              63339,
+              63335,
+              63313,
+              63350,
+              63354,
+              63315,
+              63353,
+              63314,
+              63363,
+              63344,
+              63380,
+              63337,
+              63317,
+              63255,
+              63347,
+              63356,
+              63253,
+              63259,
+              64189,
+              92335,
+              63384,
+              64162,
+              64165,
+              64164,
+              63251,
+              63357,
+              63316,
+              64168,
+              64167,
+              63325,
+              64166,
+              64175,
+              63321,
+              64170,
+              64174,
+              63355,
+              63327,
+              64171,
+              64176,
+              63385,
+              64172,
+              64173,
+              116353,
+              63379,
+              63352,
+              64163,
+              63295,
+              63264,
+              63263,
+              113880,
+              63297,
+              107101,
+              107309,
+              107517,
+              108089,
+              113074,
+              63292,
+              66111,
+              106269,
+              106477,
+              106685,
+              116063,
+              65819,
+              63293,
+              65965,
+              91779,
+              91459,
+              97922,
+              63291,
+              63273,
+              106077,
+              106078,
+              102243,
+              102301,
+              102359,
+              102417,
+              102475,
+              102533,
+              102591,
+              102649,
+              102707,
+              102765,
+              102823,
+              102881,
+              102939,
+              102997,
+              103055,
+              103113,
+              105865,
+              105923,
+              105981,
+              106039,
+              63274,
+              63797,
+              63798,
+              63799,
+              63801,
+              63802,
+              63803,
+              97632,
+              63777,
+              63778,
+              63779,
+              63780,
+              63781,
+              63782,
+              63412,
+              63410,
+              63411,
+              63413,
+              63414,
+              87187,
+              63416,
+              63415
+            ],
+            "name": "id",
+            "type": "Integer"
+          },
+          {
+            "data": [
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/daily/absolute pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/daily/differential pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/daily/energy",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/daily/flow minutes",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/daily/temperature",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/daily/volume",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/efm repoll/retrievehistory",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/hourly/absolute pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/hourly/differential pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/hourly/energy",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/hourly/flow minutes",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/hourly/temperature",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/hourly/volume",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/setpoints/flow rate alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/setpoints/flow rate low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/setpoints/flow rate low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/setpoints/flow rate low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/spot rate/absolute pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/spot rate/battery voltage",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/spot rate/contract hour",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/spot rate/differential pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/spot rate/flow rate",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/spot rate/previous day volume",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/spot rate/temperature",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/spot rate/volume",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/daily/absolute pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/daily/differential pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/daily/energy",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/daily/flow minutes",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/daily/temperature",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/daily/volume",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/efm repoll/retrievehistory",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/hourly/absolute pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/hourly/differential pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/hourly/energy",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/hourly/flow minutes",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/hourly/temperature",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/hourly/volume",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/setpoints/flow rate alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/setpoints/flow rate low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/setpoints/flow rate low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/setpoints/flow rate low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/spot rate/absolute pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/spot rate/battery voltage",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/spot rate/contract hour",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/spot rate/differential pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/spot rate/flow rate",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/spot rate/previous day volume",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/spot rate/temperature",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/spot rate/volume",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/heater treater/pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/inlet seperator/pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/oil tank 1/interface",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/oil tank 1/level",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/oil tank 1/rf data/battery voltage",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/oil tank 1/rf data/rssi value",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/oil tank 2/interface",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/oil tank 2/level",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/oil tank 2/rf data/battery voltage",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/oil tank 2/rf data/rssi value",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/oil tank 3/interface",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/oil tank 3/level",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/oil tank 3/rf data/battery voltage",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/oil tank 3/rf data/rssi value",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/arrival logs/arrival duration log 10",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/arrival logs/arrival duration log 11",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/arrival logs/arrival duration log 12",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/arrival logs/arrival duration log 13",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/arrival logs/arrival duration log 14",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/arrival logs/arrival duration log 15",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/arrival logs/arrival duration log 16",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/arrival logs/arrival duration log 17",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/arrival logs/arrival duration log 18",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/arrival logs/arrival duration log 19",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/arrival logs/arrival duration log 20",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/arrival logs/arrival duration log 9",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/arrival velocity",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/count logs/arrival count log 2",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/count logs/arrival count log 3",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/count logs/arrival count log 4",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/count logs/arrival count log 5",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/count logs/arrival count log 6",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/count logs/arrival count log 7",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/count logs/failure count log 2",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/count logs/failure count log 3",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/count logs/failure count log 4",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/count logs/failure count log 5",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/count logs/failure count log 6",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/count logs/failure count log 7",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/current battery voltage",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/current casing pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/current day arrival count",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/current day failure count",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/current line pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/current tubing pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/last lift velocity",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/plunger arrivals average",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/plunger failures average",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/plunger fast count",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/plunger normal count",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/plunger slow count",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/plunger state",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/previous day arrival count",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/previous day failure count",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/afterflow time enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/afterflow time setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/auto adj shutin or afterflow or both  setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/close time enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/close time setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/detect plunger falls",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/force close",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/force open",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/load factor function",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/load factor percentage setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/open time enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/open time setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/plunger mode",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/recovery time setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/restart plunger",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/well depth setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/total arrival count",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/total failure count",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/valve status",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/sales treater/pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/salt water tank 1/interface",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/salt water tank 1/level",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/salt water tank 1/rf data/battery voltage",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/salt water tank 1/rf data/rssi value",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank high alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank high high setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank battery voltage low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank battery voltage low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank battery voltage low alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank battery voltage low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank haul setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank high alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank high high setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank low alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/casing pressure",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/rf data/battery voltage",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/rf data/rssi value",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing high alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing high alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing high alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing high alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing low alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing high alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing high alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing high alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing high alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing low alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/wellhead battery voltage low alarm active delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/wellhead battery voltage low alarm clear delay setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/wellhead battery voltage low alarm enable",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/wellhead battery voltage low alarm setpoint",
+              "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/tubing pressure",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/daily/absolute pressure",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/daily/differential pressure",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/daily/energy",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/daily/flow minutes",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/daily/temperature",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/daily/volume",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/efm repoll/retrievehistory",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/hourly/absolute pressure",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/hourly/differential pressure",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/hourly/energy",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/hourly/flow minutes",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/hourly/temperature",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/hourly/volume",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/spot rate/absolute pressure",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/spot rate/battery voltage",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/spot rate/contract hour",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/spot rate/differential pressure",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/spot rate/flow rate",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/spot rate/previous day volume",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/spot rate/temperature",
+              "og22/acadia m1-13-12-6/paddata/gasmeter vru/spot rate/volume"
+            ],
+            "name": "tagpath",
+            "type": "String"
+          }
+        ]
+      },
+      "WellFilter": "OG22/Acadia M1-13-12-6/Acadia 13-12-12-6 1HX%",
+      "WellSiteId": 261,
+      "WellType": "Plunger",
+      "endDate": {
+        "$": [
+          "ts",
+          192,
+          1737056152784
+        ],
+        "$ts": 1737056152752
+      },
+      "startDate": {
+        "$": [
+          "ts",
+          192,
+          1737056152784
+        ],
+        "$ts": 1736624152752
+      }
+    },
+    "events": {
+      "dom": {
+        "onMouseMove": {
+          "config": {
+            "script": "\tself.custom.LastActivity \u003d system.date.now()"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      },
+      "system": {
+        "onShutdown": {
+          "config": {
+            "script": "\tds \u003d self.custom.DeviceTagPaths\n\tfor row in ds:\n\t\tpath \u003d row\n\t\tsystem.tag.writeBlocking([path],[1])"
+          },
+          "scope": "G",
+          "type": "script"
+        },
+        "onStartup": {
+          "config": {
+            "script": "\tpass\n#\tcurrentSecond \u003d system.date.getSecond(system.date.now())\n#\t\n#\tself.custom.pageStartTime \u003d currentSecond"
+          },
+          "enabled": false,
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.Pad": {
+        "binding": {
+          "config": {
+            "expression": "if ({this.custom.WellDataMain} !\u003d -1,\r\n\t{this.custom.WellDataMain}[0,\"PadName\"],\r\n\t-1\r\n)"
+          },
+          "enabled": false,
+          "overlayOptOut": true,
+          "type": "expr"
+        }
+      },
+      "custom.PadFilter": {
+        "binding": {
+          "config": {
+            "struct": {
+              "key": "{this.custom.Pad}",
+              "key_1": "{this.custom.WellType}"
+            },
+            "waitOnAll": true
+          },
+          "enabled": false,
+          "overlayOptOut": true,
+          "transforms": [
+            {
+              "code": "\t\n\tfilter \u003d self.session.custom.CustomerId + \"/\" + self.custom.Pad + \"/paddata%\"\n\treturn filter\n",
+              "type": "script"
+            }
+          ],
+          "type": "expr-struct"
+        }
+      },
+      "custom.TagPathsSetpoint": {
+        "binding": {
+          "config": {
+            "path": "this.custom.Tagpaths"
+          },
+          "enabled": false,
+          "overlayOptOut": true,
+          "transforms": [
+            {
+              "code": "\tif value !\u003d \"\" and value !\u003d None and value !\u003d -1:\n\t\tdata \u003d []\n\t\tds \u003d []\n\t\theaders \u003d [\"id\",\"tagpath\"]\n\t\tif value !\u003d None and value !\u003d \"\":\n\t\t\tfor row in range(value.getRowCount()):\n\t\t\t\ttagpath \u003d value.getValueAt(row,1)\n\t\t\t\tif \"setpoint\" in tagpath or \"setPoint\" in tagpath:\n\t\t\t\t\tdata.append([value.getValueAt(row,0),value.getValueAt(row,1)])\n\t\t\t\t\tds \u003d system.dataset.toDataSet(headers, data)\n\t\t\t\n\t\tif ds \u003d\u003d []:\n\t\t\treturn -1\n\t\telse:\n\t\t\treturn ds\n\telse:\n\t\treturn -1\n",
+              "type": "script"
+            }
+          ],
+          "type": "property"
+        }
+      },
+      "custom.Tagpaths": {
+        "binding": {
+          "config": {
+            "struct": {
+              "path": "{/root.custom.PadFilter}",
+              "path2": "{/root.custom.WellFilter}"
+            },
+            "waitOnAll": true
+          },
+          "enabled": false,
+          "overlayOptOut": true,
+          "transforms": [
+            {
+              "code": "\tpath \u003d value.path\n\tpath2 \u003d value.path2\n\t\n\tparameters \u003d {\"path\":path, \"path2\":path2}\n\t\n\tif  path !\u003d -1  and path2 !\u003d -1 and self.session.custom.ProjectName !\u003d \"TemplateProject-OilAndGas\":\n\t\tquery \u003d system.db.runNamedQuery(\"WellData/Tagpaths_TeTable\",parameters)\n\t\tif query \u003d\u003d None or query \u003d\u003d \"\":\n\t\t\treturn -1\n\t\telse:\n\t\t\treturn query\n\telse:\n\t\treturn -1",
+              "type": "script"
+            }
+          ],
+          "type": "expr-struct"
+        }
+      },
+      "custom.WellFilter": {
+        "binding": {
+          "config": {
+            "struct": {
+              "key": "{view.params.WellName}",
+              "key_1": "{this.custom.WellType}"
+            },
+            "waitOnAll": true
+          },
+          "enabled": false,
+          "overlayOptOut": true,
+          "transforms": [
+            {
+              "code": "\t\n\tif \"Totalflow\" in self.custom.WellType or \"Plunger\" in self.custom.WellType or \"POC\" in self.custom.WellType or \"ESP\" in self.custom.WellType or \"Compressor\" in self.custom.WellType:\n\t\tfilter \u003d self.session.custom.CustomerId + \"/\" + self.custom.Pad + \"/\" + self.view.params.WellName + \"%\"\n\t\treturn filter\n\telse:\n\t\tfilter \u003d self.session.custom.CustomerId + \"/\" + self.custom.Pad + \"%\"\n\t\treturn filter\n",
+              "type": "script"
+            }
+          ],
+          "type": "expr-struct"
+        }
+      },
+      "custom.WellSiteId": {
+        "binding": {
+          "config": {
+            "expression": "if ({this.custom.WellDataMain} !\u003d -1,\r\n\t{this.custom.WellDataMain}[0,\"WellsiteId\"],\r\n\t-1\r\n)"
+          },
+          "enabled": false,
+          "type": "expr"
+        }
+      },
+      "custom.WellType": {
+        "binding": {
+          "config": {
+            "expression": "if ({this.custom.WellDataMain} !\u003d -1,\r\n\t{this.custom.WellDataMain}[0,\"WellType\"],\r\n\t-1\r\n)"
+          },
+          "enabled": false,
+          "overlayOptOut": true,
+          "type": "expr"
+        }
+      }
+    },
+    "props": {
+      "direction": "column"
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "ResetTimeout",
+          "pageScope": true,
+          "script": "#\tself.custom.MinuteSinceLastActivity \u003d str(payload[\"ResetTimeout\"])",
+          "sessionScope": false,
+          "viewScope": false
+        },
+        {
+          "messageType": "Setpoint Popup Event Listener",
+          "pageScope": true,
+          "script": "\tself.view.custom.isModalOpen \u003d payload[\u0027isModalOpen\u0027]",
+          "sessionScope": false,
+          "viewScope": false
+        },
+        {
+          "messageType": "refreshWellDetail_WellPlcData",
+          "pageScope": true,
+          "script": "\tself.refreshBinding(\"custom.WellData\")\n\tself.refreshBinding(\"custom.PadData\")\n\t",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

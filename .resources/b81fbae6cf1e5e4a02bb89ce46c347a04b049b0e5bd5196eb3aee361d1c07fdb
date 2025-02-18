@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "backgroundImage": "URL(/system/images/Gradient.jpg)",
+      "color": "#141414",
+      "fontFamily": "Arial",
+      "fontSize": "14px",
+      "lineHeight": "17px",
+      "fill": "#220C18"
+    }
+  }
+}

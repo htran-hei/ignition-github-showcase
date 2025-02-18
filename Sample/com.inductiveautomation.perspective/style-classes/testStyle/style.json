@@ -1,0 +1,9 @@
+{
+  "base": {
+    "style": {
+      "color": "#2B1414",
+      "fontFamily": "Roboto",
+      "fontSize": "21px"
+    }
+  }
+}

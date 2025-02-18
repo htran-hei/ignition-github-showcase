@@ -1,0 +1,375 @@
+{
+  "custom": {},
+  "params": {
+    "TagPath": ""
+  },
+  "propConfig": {
+    "params.TagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 28,
+      "width": 360
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Datapoint"
+        },
+        "position": {
+          "basis": "50px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.TagPath"
+              },
+              "transforms": [
+                {
+                  "code": "\timport string\n\tif \"setpoints\" not in value:\n\t\tval \u003d value.split(\"/\")\n\t\tval \u003d val[4]\n\t\tval \u003d str(val.replace(\"setpoint\",\"\"))\n\t#\treturn type(val)\n\t\tval \u003d string.capwords(val, sep \u003d None)\n\t\treturn val\n\t\n\telif \"valve control\" in value:\n\t\ttry:\n\t\t\t\n\t\t\tval \u003d value.split(\"/\")\n\t\t\tval \u003d val[6] \n\t\t\tval \u003d str(val.replace(\"\",\"\"))\n\t\t\tval \u003d string.capwords(val, sep \u003d None)\n\t\t\treturn val\n\t\texcept:\n\t\t\tpass\n\t\n\t\n\t\n\telse:\n\t\ttry:\n\t\t\tval \u003d value.split(\"/\")\n\t\t\tval \u003d val[3] + \" \"+ val[5] \n\t\t\tval \u003d str(val.replace(\"setpoint\",\"\"))\n\t\t\tval \u003d string.capwords(val, sep \u003d None)\n\t\t\treturn val\n\t\texcept:\n\t\t\tval \u003d value.split(\"/\")\n\t\t\tval \u003d val[4]\n\t\t\tval \u003d str(val.replace(\"setpoint\",\"\"))\n\t\t\tval \u003d string.capwords(val, sep \u003d None)\n\t\t\treturn val",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontSize": 14,
+            "paddingLeft": 5
+          },
+          "textStyle": {
+            "fontWeight": "bold"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "NumericEntryField"
+        },
+        "position": {
+          "basis": "60px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.TagPath"
+              },
+              "transforms": [
+                {
+                  "code": "\tif \"delay\" not in value and \"enable\" not in value:\n\t\treturn True\n\telse:\n\t\treturn False",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.spinner.enabled": {
+            "binding": {
+              "config": {
+                "path": "session.props.auth.user.roles"
+              },
+              "overlayOptOut": true,
+              "transforms": [
+                {
+                  "code": "\ttry:\n\t\tcurrentRoles \u003d self.session.props.auth.user.roles\n\t\tfor role in currentRoles:\n\t\t\tif role \u003d\u003d \"read/write\":\n\t\t\t\tset \u003d True\n\t\treturn set\n\texcept:\n\t\tpass",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "fallbackDelay": 2.5,
+                "mode": "expression",
+                "tagPath": "{view.params.TagPath}"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "spinner": {}
+        },
+        "type": "ia.input.numeric-entry-field"
+      },
+      {
+        "meta": {
+          "name": "MultiStateButton"
+        },
+        "position": {
+          "basis": "110px"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.TagPath"
+              },
+              "transforms": [
+                {
+                  "code": "\tif \"enable\" in value:\n\t\treturn True\n\telse:\n\t\treturn False",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.controlValue": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "fallbackDelay": 2.5,
+                "mode": "expression",
+                "tagPath": "{view.params.TagPath}"
+              },
+              "overlayOptOut": true,
+              "type": "tag"
+            }
+          },
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "path": "session.props.auth.user.roles"
+              },
+              "overlayOptOut": true,
+              "transforms": [
+                {
+                  "code": "\ttry:\n\t\tcurrentRoles \u003d self.session.props.auth.user.roles\n\t\tfor role in currentRoles:\n\t\t\tif role \u003d\u003d \"read/write\":\n\t\t\t\tset \u003d True\n\t\treturn set\n\texcept:\n\t\tpass",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.indicatorValue": {
+            "binding": {
+              "config": {
+                "path": "this.props.controlValue"
+              },
+              "overlayOptOut": true,
+              "transforms": [
+                {
+                  "fallback": 0,
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": 1
+                    },
+                    {
+                      "input": 1,
+                      "output": 1
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.states[0].text": {
+            "binding": {
+              "config": {
+                "path": "view.params.TagPath"
+              },
+              "transforms": [
+                {
+                  "code": "\tif \"safety shutdown\" in value or \"Safety Shutdown\" in value:\n\t\treturn \"Closed\"\n\telse:\n\t\treturn \"Disabled\"",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.states[1].text": {
+            "binding": {
+              "config": {
+                "path": "view.params.TagPath"
+              },
+              "transforms": [
+                {
+                  "code": "\tif \"safety shutdown\" in value or \"Safety Shutdown\" in value:\n\t\treturn \"Open\"\n\telse:\n\t\treturn \"Enabled\"",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "defaultSelectedStyle": {
+            "backgroundColor": "#00D900",
+            "fontSize": 13,
+            "fontWeight": "bold"
+          },
+          "defaultUnselectedStyle": {
+            "fontSize": 13
+          },
+          "orientation": "row",
+          "states": [
+            {
+              "selectedStyle": {
+                "backgroundColor": "#D5D5D5",
+                "classes": ""
+              },
+              "unselectedStyle": {
+                "classes": ""
+              },
+              "value": 0
+            },
+            {
+              "selectedStyle": {
+                "backgroundColor": "#00FF00",
+                "classes": ""
+              },
+              "unselectedStyle": {
+                "classes": ""
+              },
+              "value": 1
+            }
+          ],
+          "style": {
+            "fontWeight": "normal",
+            "marginRight": 5
+          }
+        },
+        "type": "ia.input.multi-state-button"
+      },
+      {
+        "meta": {
+          "name": "NumericEntryField_Delay"
+        },
+        "position": {
+          "basis": "60px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.TagPath"
+              },
+              "transforms": [
+                {
+                  "code": "\tif \"delay\" in value:\n\t\treturn True\n\telse:\n\t\treturn False",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.spinner.enabled": {
+            "binding": {
+              "config": {
+                "path": "session.props.auth.user.roles"
+              },
+              "overlayOptOut": true,
+              "transforms": [
+                {
+                  "code": "\ttry:\n\t\tcurrentRoles \u003d self.session.props.auth.user.roles\n\t\tfor role in currentRoles:\n\t\t\tif role \u003d\u003d \"read/write\":\n\t\t\t\tset \u003d True\n\t\treturn set\n\texcept:\n\t\tpass",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "expression",
+                "tagPath": "{view.params.TagPath}"
+              },
+              "transforms": [
+                {
+                  "code": "\ttry:\n\t\tval \u003d value/60.0\n\t\treturn val\n\texcept:\n\t\tpass",
+                  "type": "script"
+                }
+              ],
+              "type": "tag"
+            },
+            "onChange": {
+              "enabled": null,
+              "script": "\tif currentValue is not None and previousValue is not None:\n\t\tif currentValue.value !\u003d previousValue.value:\n\t\t\ttry:\n\t\t\t\tsystem.tag.writeBlocking([self.view.params.TagPath], currentValue.value*60)\n\t\t\texcept:\n\t\t\t\tpass"
+            }
+          }
+        },
+        "props": {
+          "format": "00.#",
+          "spinner": {}
+        },
+        "type": "ia.input.numeric-entry-field"
+      },
+      {
+        "meta": {
+          "name": "unit"
+        },
+        "position": {
+          "basis": "30px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "if({this.props.text}!\u003d\"\",true,false)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.TagPath"
+              },
+              "transforms": [
+                {
+                  "code": "\tif (\"tank\" in value or \"start\" in value or \"stop\" in value or \"deadband reset\" in value) and \"delay\" not in value:\n\t\treturn \"Ft\"\n\telif \"pressure\" in value:\n\t\treturn \"Psi\"\n\telif \"delay\" in value:\n\t\treturn \"min\"\n\telse:\n\t\treturn \"\"",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "textStyle": {
+            "fontSize": 13,
+            "marginLeft": 2,
+            "paddingLeft": 2,
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignItems": "center",
+      "style": {
+        "marginBottom": 2,
+        "marginTop": 2
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

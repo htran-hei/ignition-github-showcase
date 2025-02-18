@@ -1,0 +1,21 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#E6EAEE",
+      "borderColor": "#9B9B9B",
+      "borderWidth": "1px",
+      "borderLeftColor": "#BEBEBE",
+      "borderLeftStyle": "solid",
+      "borderLeftWidth": "1px",
+      "borderRightColor": "#BEBEBE",
+      "borderRightStyle": "solid",
+      "borderRightWidth": "1px",
+      "color": "#000000",
+      "fontFamily": "Roboto",
+      "fontSize": "14px",
+      "fontWeight": "normal",
+      "lineHeight": "16px",
+      "textTransform": "uppercase"
+    }
+  }
+}

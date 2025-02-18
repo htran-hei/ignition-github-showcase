@@ -1,0 +1,2585 @@
+{
+  "custom": {
+    "ESPManufacturer": -1,
+    "MobileLayout": true,
+    "PCLayout": false
+  },
+  "events": {
+    "system": {
+      "onShutdown": {
+        "config": {
+          "script": "\tsystem.perspective.sendMessage(\"Setpoint Popup Event Listener\", payload \u003d {\u0027isModalOpen\u0027: False})"
+        },
+        "scope": "G",
+        "type": "script"
+      },
+      "onStartup": {
+        "config": {
+          "script": "\tsystem.perspective.sendMessage(\"Setpoint Popup Event Listener\", payload \u003d {\u0027isModalOpen\u0027: True})"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "Pad": "Acadia M1-13-12-6",
+    "TagPaths": {
+      "$": [
+        "ds",
+        192,
+        1737054314548
+      ],
+      "$columns": [
+        {
+          "data": [
+            66371,
+            92360,
+            92389,
+            66708,
+            66421,
+            87772,
+            88084,
+            66758,
+            64168,
+            64167,
+            63325,
+            64166,
+            64175,
+            63321,
+            64170,
+            64174,
+            63355,
+            63327,
+            64171,
+            64176,
+            63385,
+            64172,
+            64173,
+            116353,
+            107101,
+            107309,
+            107517,
+            108089,
+            113074,
+            63292,
+            66111,
+            106269,
+            106477,
+            106685,
+            116063,
+            65819,
+            63293,
+            65965,
+            91779,
+            91459,
+            97922,
+            63291,
+            102243,
+            102301,
+            102359,
+            102417,
+            102475,
+            102533,
+            102591,
+            102649,
+            102707,
+            102765,
+            102823,
+            102881,
+            102939,
+            102997,
+            103055,
+            103113,
+            105865,
+            105923,
+            105981,
+            106039
+          ],
+          "name": "id",
+          "type": "Integer"
+        },
+        {
+          "data": [
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/setpoints/flow rate alarm enable",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/setpoints/flow rate low alarm active delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/setpoints/flow rate low alarm clear delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter injection/setpoints/flow rate low alarm setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/setpoints/flow rate alarm enable",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/setpoints/flow rate low alarm active delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/setpoints/flow rate low alarm clear delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/gasmeter sales/setpoints/flow rate low alarm setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/afterflow time enable",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/afterflow time setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/auto adj shutin or afterflow or both  setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/close time enable",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/close time setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/detect plunger falls",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/force close",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/force open",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/load factor function",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/load factor percentage setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/open time enable",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/open time setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/plunger mode",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/recovery time setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/restart plunger",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/plunger/setpoints/well depth setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm active delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm clear delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm enable",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank battery voltage low alarm setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank high alarm setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/oil tank high high setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank battery voltage low alarm active delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank battery voltage low alarm clear delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank battery voltage low alarm enable",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank battery voltage low alarm setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank haul setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank high alarm setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank high high setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank low alarm active delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank low alarm clear delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank low alarm enable",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/setpoints/salt water tank low alarm setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing high alarm active delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing high alarm clear delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing high alarm enable",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing high alarm setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing low alarm active delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing low alarm clear delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing low alarm enable",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/casing low alarm setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing high alarm active delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing high alarm clear delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing high alarm enable",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing high alarm setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing low alarm active delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing low alarm clear delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing low alarm enable",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/tubing low alarm setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/wellhead battery voltage low alarm active delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/wellhead battery voltage low alarm clear delay setpoint",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/wellhead battery voltage low alarm enable",
+            "og22/acadia m1-13-12-6/acadia 13-12-12-6 1hx/wellhead/setpoints/wellhead battery voltage low alarm setpoint"
+          ],
+          "name": "tagpath",
+          "type": "String"
+        }
+      ]
+    },
+    "WellName": "Acadia 13-12-12-6 1HX",
+    "WellType": "Plunger",
+    "isOpen": false
+  },
+  "propConfig": {
+    "custom.ESPManufacturer": {
+      "binding": {
+        "config": {
+          "parameters": {
+            "wellname": "{view.params.WellName}"
+          },
+          "queryPath": "Setpoints/ESPManufacturer",
+          "returnFormat": "scalar"
+        },
+        "transforms": [
+          {
+            "code": "\tif value \u003d\u003d None:\n\t\treturn -1\n\telse:\n\t\treturn value",
+            "type": "script"
+          }
+        ],
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "custom.MobileLayout": {
+      "persistent": true
+    },
+    "custom.PCLayout": {
+      "persistent": true
+    },
+    "params.Pad": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.TagPaths": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.WellName": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.WellType": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.isOpen": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "props.defaultSize.height": {
+      "binding": {
+        "config": {
+          "expression": "{view.params.WellName}"
+        },
+        "transforms": [
+          {
+            "code": "\ttry:\n\t\tif self.custom.PCLayout \u003d\u003d True and self.session.props.device.type !\u003d \"designer\":\n\t\t\t\n\t\t\treturn 600\n\t\telif self.custom.MobileLayout \u003d\u003d True and self.session.props.device.type !\u003d \"designer\":\n\t\t\t\n\t\t\treturn 600\n\t\telse:\n\t\t\treturn 600\n\texcept:\n\t\treturn 600\n\t\n\t\t",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      }
+    },
+    "props.defaultSize.width": {
+      "binding": {
+        "config": {
+          "expression": "{view.params.WellName}"
+        },
+        "transforms": [
+          {
+            "code": "\tif self.custom.PCLayout \u003d\u003d True and self.session.props.device.type !\u003d \"designer\":\n\t\treturn 1200\n\telif self.custom.MobileLayout \u003d\u003d True and self.session.props.device.type !\u003d \"designer\":\n\t\treturn 360\n\telse:\n\t\treturn 360\n\t\t",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      }
+    }
+  },
+  "props": {
+    "defaultSize": {}
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "GasMeter Buy_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Buy.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Buy.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "GasMeter Buy"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tif self.meta.name.lower() in value.getValueAt(row,1):\n\t\t\tds.append([value.getValueAt(row,1)])\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\t\n\t\t\t\t\tinstance \u003d {\n\t\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t\t  },\n\t\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t\t  \"index\":i\n\t\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Buy.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "auto",
+                    "grow": 0,
+                    "shrink": 0
+                  },
+                  "justify": "space-evenly",
+                  "path": "Setpoints/Views/Template",
+                  "useDefaultViewHeight": false,
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "BuyContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./GasMeter Injection_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "GasMeter Sales_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Sales.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Sales.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "GasMeter Sales"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tif self.meta.name.lower() in value.getValueAt(row,1):\n\t\t\tds.append([value.getValueAt(row,1)])\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\t\n\t\t\t\t\tinstance \u003d {\n\t\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t\t  },\n\t\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t\t  \"index\":i\n\t\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Sales.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "auto",
+                    "grow": 0,
+                    "shrink": 0
+                  },
+                  "justify": "space-evenly",
+                  "path": "Test/Setpoints/Views/Template",
+                  "useDefaultViewHeight": false,
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "SalesContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./GasMeter Injection_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "GasMeter Injection_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Injection.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Injection.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "GasMeter Injection"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tif self.meta.name.lower() in value.getValueAt(row,1) and \"valve control\" not in value.getValueAt(row,1):\n\t\t\tds.append([value.getValueAt(row,1)])\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\t\n\t\t\t\t\tinstance \u003d {\n\t\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t\t  },\n\t\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t\t  \"index\":i\n\t\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Injection.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "auto",
+                    "grow": 0,
+                    "shrink": 0
+                  },
+                  "justify": "space-evenly",
+                  "path": "Test/Setpoints/Views/Template",
+                  "useDefaultViewHeight": false,
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "InjectionContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./GasMeter Injection_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Valve Control_label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../Valve Control.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../Valve Control.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Valve Control"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tif self.meta.name.lower() in value.getValueAt(row,1):\n#\t\tif \"flow rate setpoint\" in value.getValueAt(row,1):\n\t\t\tds.append([value.getValueAt(row,1)])\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\t\n\t\t\t\t\tinstance \u003d {\n\t\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t\t  },\n\t\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t\t  \"index\":i\n\t\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../Valve Control.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "alignContent": "flex-start",
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "25px",
+                    "grow": 0
+                  },
+                  "path": "Setpoints/Views/Template",
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "ValveContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./Valve Control_label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "GasMeter Check_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Check.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Check.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "GasMeter Check"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tif self.meta.name.lower() in value.getValueAt(row,1):\n\t\t\tds.append([value.getValueAt(row,1)])\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\t\n\t\t\t\t\tinstance \u003d {\n\t\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t\t  },\n\t\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t\t  \"index\":i\n\t\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Check.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "auto",
+                    "grow": 0,
+                    "shrink": 0
+                  },
+                  "justify": "space-evenly",
+                  "path": "Setpoints/Views/Template",
+                  "useDefaultViewHeight": false,
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "CheckContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./GasMeter Injection_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "GasMeter Pad Suction_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Pad Suction.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Pad Suction.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "GasMeter Pad Suction"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tif self.meta.name.lower() in value.getValueAt(row,1):\n\t\t\tds.append([value.getValueAt(row,1)])\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\t\n\t\t\t\t\tinstance \u003d {\n\t\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t\t  },\n\t\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t\t  \"index\":i\n\t\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Pad Suction.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "auto",
+                    "grow": 0,
+                    "shrink": 0
+                  },
+                  "justify": "space-evenly",
+                  "path": "Setpoints/Views/Template",
+                  "useDefaultViewHeight": false,
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "PadSuctionContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./GasMeter Injection_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "GasMeter Pad Buy_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Pad Buy.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Pad Buy.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "GasMeter Pad Buy"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tif self.meta.name.lower() in value.getValueAt(row,1):\n\t\t\tds.append([value.getValueAt(row,1)])\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\t\n\t\t\t\t\tinstance \u003d {\n\t\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t\t  },\n\t\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t\t  \"index\":i\n\t\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Pad Buy.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "auto",
+                    "grow": 0,
+                    "shrink": 0
+                  },
+                  "justify": "space-evenly",
+                  "path": "Setpoints/Views/Template",
+                  "useDefaultViewHeight": false,
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "PadBuyContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./GasMeter Injection_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "GasMeter Pad Recycle_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Pad Recycle.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Pad Recycle.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "GasMeter Pad Recycle"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tif self.meta.name.lower() in value.getValueAt(row,1):\n\t\t\tds.append([value.getValueAt(row,1)])\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\t\n\t\t\t\t\tinstance \u003d {\n\t\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t\t  },\n\t\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t\t  \"index\":i\n\t\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter Pad Recycle.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "auto",
+                    "grow": 0,
+                    "shrink": 0
+                  },
+                  "justify": "space-evenly",
+                  "path": "Setpoints/Views/Template",
+                  "useDefaultViewHeight": false,
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "PadRecycleContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./GasMeter Injection_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "GasMeter VRU_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter VRU.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter VRU.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "GasMeter VRU"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tif self.meta.name.lower() in value.getValueAt(row,1):\n\t\t\tds.append([value.getValueAt(row,1)])\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\t\n\t\t\t\t\tinstance \u003d {\n\t\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t\t  },\n\t\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t\t  \"index\":i\n\t\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../GasMeter VRU.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "auto",
+                    "grow": 0,
+                    "shrink": 0
+                  },
+                  "justify": "space-evenly",
+                  "path": "Setpoints/Views/Template",
+                  "useDefaultViewHeight": false,
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "VRUContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./GasMeter Injection_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "GasContainer"
+        },
+        "propConfig": {
+          "position.basis": {
+            "binding": {
+              "config": {
+                "expression": "if({this.position.display} \u003d False,\"0px\",\"350px\")"
+              },
+              "type": "expr"
+            }
+          },
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "if({./InjectionContainer/GasMeter Injection.position.display} || {./BuyContainer/GasMeter Buy.position.display} || {./SalesContainer/GasMeter Sales.position.display},true,false)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "borderStyle": "ridge",
+            "borderWidth": 5
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "32px",
+              "display": null,
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "WellDetail/RoundedBorder",
+                "textAlign": "center"
+              },
+              "text": "Plunger"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Open_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../Open.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../Open.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Open"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tfullPath \u003d \"[default]\" + value.getValueAt(row,1) + \".engUnit\"\n\n\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\n#\t\tif \"Plunger Flowco\" in self.view.params.WellType:\n\t\tif (self.meta.name.lower() in value.getValueAt(row,1) or \"arrival time\" in value.getValueAt(row,1)) and engUnit \u003d\u003d \"Seconds\":\n\t\t\tds.append([value.getValueAt(row,1)])\n\t\tif self.meta.name.lower() in value.getValueAt(row,1) and (engUnit \u003d\u003d \"Hour\" or engUnit \u003d\u003d \"Minute\" or engUnit \u003d\u003d \"Second\"):\n\t\t\tds.append([value.getValueAt(row,1)])\n#\t\tif \"Plunger Epic\" in self.view.params.WellType:\n#\t\telse:\n#\t\t\tds.append([value.getValueAt(row,1)])\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\tfullPath \u003d \"[default]\" + dataset.getValueAt(i,\"tagpath\") + \".engUnit\"\n\t\t\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\t\t\n\t\t\t\tinstance \u003d {\n\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t  },\n\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t  \"index\":i,\n\t\t\t\t  \"engUnit\":engUnit\n\t\t\t\t  \n\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../Open.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "alignContent": "space-around",
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "25px",
+                    "grow": 0
+                  },
+                  "path": "Setpoints/Views/Template_Plunger",
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "OpenContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./Open_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              },
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.position.basis} \u003d \u00270\u0027, false, true)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Close_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../Close.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../Close.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Close"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tfullPath \u003d \"[default]\" + value.getValueAt(row,1) + \".engUnit\"\n\n\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\n#\t\tif \"Plunger Flowco\" in self.view.params.WellType:\n\t\tif self.meta.name.lower() in value.getValueAt(row,1) and engUnit \u003d\u003d \"Seconds\":\n\t\t\tds.append([value.getValueAt(row,1)])\n\t\tif self.meta.name.lower() in value.getValueAt(row,1) and (engUnit \u003d\u003d \"Hour\" or engUnit \u003d\u003d \"Minute\" or engUnit \u003d\u003d \"Second\"):\n\t\t\tds.append([value.getValueAt(row,1)])\n#\t\tif \"Plunger Epic\" in self.view.params.WellType:\n#\t\telse:\n#\t\t\tds.append([value.getValueAt(row,1)])\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\tfullPath \u003d \"[default]\" + dataset.getValueAt(i,\"tagpath\") + \".engUnit\"\n\t\t\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\t\t\n\t\t\t\tinstance \u003d {\n\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t  },\n\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t  \"index\":i,\n\t\t\t\t  \"engUnit\":engUnit\n\t\t\t\t  \n\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../Close.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "alignContent": "space-around",
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "30px",
+                    "grow": 0
+                  },
+                  "loading": {
+                    "order": "with-parent"
+                  },
+                  "path": "Setpoints/Views/Template_Plunger",
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "CloseContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./Open_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              },
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.position.basis} \u003d \u00270\u0027, false, true)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Fall_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../Fall.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../Fall.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Fall"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tfullPath \u003d \"[default]\" + value.getValueAt(row,1) + \".engUnit\"\n\n\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\n#\t\tif \"Plunger Flowco\" in self.view.params.WellType:\n\t\tif (self.meta.name.lower() in value.getValueAt(row,1) or \"arrival time\" in value.getValueAt(row,1)) and engUnit \u003d\u003d \"Seconds\":\n\t\t\tds.append([value.getValueAt(row,1)])\n\t\tif self.meta.name.lower() in value.getValueAt(row,1) and (engUnit \u003d\u003d \"Hour\" or engUnit \u003d\u003d \"Minute\" or engUnit \u003d\u003d \"Second\"):\n\t\t\tds.append([value.getValueAt(row,1)])\n#\t\tif \"Plunger Epic\" in self.view.params.WellType:\n#\t\telse:\n#\t\t\tds.append([value.getValueAt(row,1)])\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\tfullPath \u003d \"[default]\" + dataset.getValueAt(i,\"tagpath\") + \".engUnit\"\n\t\t\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\t\t\n\t\t\t\tinstance \u003d {\n\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t  },\n\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t  \"index\":i,\n\t\t\t\t  \"engUnit\":engUnit\n\t\t\t\t  \n\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../Fall.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "alignContent": "space-around",
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "25px",
+                    "grow": 0
+                  },
+                  "path": "Setpoints/Views/Template_Plunger",
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "FallContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./Open_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              },
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.position.basis} \u003d \u00270\u0027, false, true)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Afterflow_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../Afterflow.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../Afterflow.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Afterflow"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tfullPath \u003d \"[default]\" + value.getValueAt(row,1) + \".engUnit\"\n\n\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\n#\t\tif \"Plunger Flowco\" in self.view.params.WellType:\n\t\tif self.meta.name.lower() in value.getValueAt(row,1) and engUnit \u003d\u003d \"Seconds\":\n\t\t\tds.append([value.getValueAt(row,1)])\n\t\tif self.meta.name.lower() in value.getValueAt(row,1) and (engUnit \u003d\u003d \"Hour\" or engUnit \u003d\u003d \"Minute\" or engUnit \u003d\u003d \"Second\"):\n\t\t\tds.append([value.getValueAt(row,1)])\n#\t\tif \"Plunger Epic\" in self.view.params.WellType:\n#\t\telse:\n#\t\t\tds.append([value.getValueAt(row,1)])\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\tfullPath \u003d \"[default]\" + dataset.getValueAt(i,\"tagpath\") + \".engUnit\"\n\t\t\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\t\t\n\t\t\t\tinstance \u003d {\n\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t  },\n\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t  \"index\":i,\n\t\t\t\t  \"engUnit\":engUnit\n\t\t\t\t  \n\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../Afterflow.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "alignContent": "space-around",
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "25px",
+                    "grow": 0
+                  },
+                  "path": "Setpoints/Views/Template_Plunger",
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "AfterflowContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./Open_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              },
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.position.basis} \u003d \u00270\u0027, false, true)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Recovery_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../Recovery.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../Recovery.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Recovery"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tfullPath \u003d \"[default]\" + value.getValueAt(row,1) + \".engUnit\"\n\n\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\n\n\t\tif (self.meta.name.lower() in value.getValueAt(row,1) and engUnit \u003d\u003d \"Seconds\") or self.meta.name.lower() in value.getValueAt(row,1):\n\t\t\tds.append([value.getValueAt(row,1)])\n\t\tif self.meta.name.lower() in value.getValueAt(row,1) and (engUnit \u003d\u003d \"Hour\" or engUnit \u003d\u003d \"Minute\" or engUnit \u003d\u003d \"Second\"):\n\t\t\tds.append([value.getValueAt(row,1)])\n\t\tif (\"shutdown\" in value.getValueAt(row,1) or \"fail\" in value.getValueAt(row,1)) and \"plunger/\" in value.getValueAt(row,1):\n\t\t\tds.append([value.getValueAt(row,1)])\n\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\tfullPath \u003d \"[default]\" + dataset.getValueAt(i,\"tagpath\") + \".engUnit\"\n\t\t\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\t\t\n\t\t\t\tinstance \u003d {\n\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t  },\n\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t  \"index\":i,\n\t\t\t\t  \"engUnit\":engUnit\n\t\t\t\t  \n\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "alignContent": "space-around",
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "25px",
+                    "grow": 0
+                  },
+                  "path": "Setpoints/Views/Template_Plunger",
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "RecoveryContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./Open_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              },
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.position.basis} \u003d \u00270\u0027, false, true)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Options_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../Options.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../Options.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Options"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tfullPath \u003d \"[default]\" + value.getValueAt(row,1) + \".engUnit\"\n\n\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\n\n\t\tif self.meta.name \u003d\u003d engUnit:\n\t\t\tds.append([value.getValueAt(row,1)])\n\t\t\n\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\tfullPath \u003d \"[default]\" + dataset.getValueAt(i,\"tagpath\") + \".engUnit\"\n\t\t\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\t\t\n\t\t\t\tinstance \u003d {\n\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t  },\n\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t  \"index\":i,\n\t\t\t\t  \"engUnit\":engUnit\n\t\t\t\t  \n\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "alignContent": "space-around",
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "25px",
+                    "grow": 0
+                  },
+                  "path": "Setpoints/Views/Template_Plunger_Options",
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Option Container"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./Open_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              },
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.position.basis} \u003d \u00270\u0027, false, true)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Pressure_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../Pressure.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "\u0027Additional Setpoints\u0027"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Pressure"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\n\t\tif (\"casing\" in value.getValueAt(row,1) or \"pressure\" in value.getValueAt(row,1) or \"well depth\" in value.getValueAt(row,1)) and \"plunger/\" in value.getValueAt(row,1) and \"high alarm\" not in value.getValueAt(row,1) and \"low alarm\" not in value.getValueAt(row,1):\n\t\t\tds.append([value.getValueAt(row,1)])\n\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\tfullPath \u003d \"[default]\" + dataset.getValueAt(i,\"tagpath\") + \".engUnit\"\n\t\t\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\t\t\n\t\t\t\tinstance \u003d {\n\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t  },\n\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t  \"index\":i,\n\t\t\t\t  \"engUnit\":engUnit\n\t\t\t\t  \n\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "alignContent": "space-around",
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "25px",
+                    "grow": 0
+                  },
+                  "path": "Setpoints/Views/Template_Plunger",
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              },
+              {
+                "meta": {
+                  "name": "Casing-Tubing"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tif (\"high alarm\" in value.getValueAt(row,1) or \"low alarm\" in value.getValueAt(row,1)) and \"plunger/\" in value.getValueAt(row,1):\n\t\t\tds.append([value.getValueAt(row,1)])\n\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\t\n\t\t\t\t\tinstance \u003d {\n\t\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t\t  },\n\t\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t\t  \"index\":i\n\t\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "auto",
+                    "grow": 0,
+                    "shrink": 0
+                  },
+                  "path": "Setpoints/Views/Template",
+                  "useDefaultViewHeight": false,
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Pressure"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./Open_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              },
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.position.basis} \u003d \u00270\u0027, false, true)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Start-Stop_Label"
+                },
+                "position": {
+                  "basis": "32px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "path": "../Start-Stop.position.display"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "../Start-Stop.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "WellDetail/RoundedBorder",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Start-Stop"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "custom.Data": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.TagPaths"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tds \u003d []\t\n\theaders \u003d [\"Tagpath\"]\n\tfor row in range(value.getRowCount()):\n\t\tfullPath \u003d \"[default]\" + value.getValueAt(row,1) + \".engUnit\"\n\n\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\n\n\t\tif self.meta.name \u003d\u003d engUnit:\n\t\t\tds.append([value.getValueAt(row,1)])\n\t\t\n\n\treturn system.dataset.toDataSet(headers, ds)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({this.props.instances} \u003d None,false,true)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.custom.Data}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d self.custom.Data\n\t\n\tstring \u003d []\n\ttry:\t\n\t\tif dataset.getRowCount() !\u003d 0:\n\t\t\t\n\t\t\t\n\t\t\tinstancesArray \u003d []\n\t\t\tfor i in range(0,dataset.getRowCount()):\n\t\t\t\tfullPath \u003d \"[default]\" + dataset.getValueAt(i,\"tagpath\") + \".engUnit\"\n\t\t\t\tengUnit \u003d system.tag.readBlocking([str(fullPath)])[0].value\n\t\t\t\t\n\t\t\t\tinstance \u003d {\n\t\t\t\t  \"instanceStyle\": {\n\t\t\t\t\t\"classes\": \"\"\n\t\t\t\t  },\n\t\t\t\t  \"instancePosition\": {},\n\t\t\t\t  \"TagPath\": dataset.getValueAt(i,\"tagpath\"),\n\t\t\t\t  \"index\":i,\n\t\t\t\t  \"engUnit\":engUnit\n\t\t\t\t  \n\t\t\t\t   \t\n\t\t\t\t\t\t\t\t\t\t\t  \n\t\t\t\t}\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\tinstancesArray.append(instance)\n\t\t\t\t\n\t\t\treturn instancesArray\n\texcept:\n\t\tpass",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "alignContent": "space-around",
+                  "direction": "column",
+                  "elementPosition": {
+                    "basis": "25px",
+                    "grow": 0
+                  },
+                  "path": "Setpoints/Views/Template_Plunger_Start-Stop",
+                  "useDefaultViewWidth": false
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "Start-Stop Container"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({./Open_Label.position.display}, \u0027350px\u0027, \u00270\u0027)"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              },
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.position.basis} \u003d \u00270\u0027, false, true)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "PlungerContainer"
+        },
+        "propConfig": {
+          "position.basis": {
+            "binding": {
+              "config": {
+                "expression": "if({this.position.display} \u003d False,\"0px\",\"350px\")"
+              },
+              "type": "expr"
+            }
+          },
+          "position.display": {
+            "binding": {
+              "config": {
+                "expression": "if({./OpenContainer/Open.position.display} ,true,false)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "direction": "column",
+          "justify": "space-between",
+          "style": {
+            "borderStyle": "ridge",
+            "borderWidth": 5
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.wrap": {
+        "binding": {
+          "config": {
+            "expression": "if({view.custom.MobileLayout},\"wrap\",\"wrap\")"
+          },
+          "type": "expr"
+        }
+      }
+    },
+    "props": {
+      "alignContent": "flex-start",
+      "justify": "center",
+      "style": {
+        "backgroundColor": "#D5D5D5"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

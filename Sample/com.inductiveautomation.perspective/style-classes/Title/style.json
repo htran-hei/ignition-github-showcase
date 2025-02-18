@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#AAAAAA",
+      "backgroundImage": "URL(/system/images/Gradient.jpg)",
+      "paddingBottom": "5px",
+      "paddingLeft": "5px",
+      "paddingRight": "5px",
+      "paddingTop": "5px"
+    }
+  }
+}

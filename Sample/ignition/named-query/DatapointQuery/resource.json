@@ -1,0 +1,45 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "91f6fb6ceed03f75a1722f8c80492e97a12e292481566c32f0c352793978448f",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "htran",
+      "timestamp": "2025-02-13T16:37:42Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "pad",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "well",
+        "sqlType": 3
+      }
+    ]
+  }
+}

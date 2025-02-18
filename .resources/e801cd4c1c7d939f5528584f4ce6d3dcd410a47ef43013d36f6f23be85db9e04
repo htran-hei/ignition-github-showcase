@@ -1,0 +1,1038 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onShutdown": {
+        "config": {
+          "script": "\tpayload \u003d {\n\t\t\u0027state\u0027: self.params.state,\n\t\t\u0027openPopup\u0027: self.params.openPopup\n\t}\n\tsystem.perspective.sendMessage(\u0027popupMessage\u0027, payload)\n\tsystem.perspective.closePopup(\u0027SettingExternalId\u0027)"
+        },
+        "scope": "G",
+        "type": "script"
+      },
+      "onStartup": {
+        "config": {
+          "script": "\timport time\n#\ttime.sleep()\n\tlogger \u003d system.util.getLogger(\u0027IgnitionSystem\u0027)\n\tself.getChild(\"root\").getChild(\"InputContainer\").getChild(\"LocContainer\").getChild(\"Dropdown\").props.value \u003d self.params.state[\u0027asset\u0027]\n\tself.getChild(\"root\").getChild(\"InputContainer\").getChild(\"PadContainer\").getChild(\"Dropdown\").props.value \u003d self.params.state[\u0027pad\u0027]\n\tself.getChild(\"root\").getChild(\"InputContainer\").getChild(\"WellContainer\").getChild(\"Dropdown\").props.value \u003d self.params.state[\u0027well\u0027]\n\ttry:\n\t\tlogger.info(\u0027open popup: \u0027+\u0027\\\u0027\u0027+str(self.params.state)+\u0027\\\u0027\u0027)\n\t\tself.getChild(\"root\").getChild(\"InputContainer\").getChild(\"TypeContainer\").getChild(\"Dropdown\").props.value \u003d self.params.state[\u0027type\u0027]\n\t\tlogger.info(\u0027type dropdown: \u0027+self.getChild(\"root\").getChild(\"InputContainer\").getChild(\"TypeContainer\").getChild(\"Dropdown\").props.value)\n\t\tself.getChild(\"root\").getChild(\"InputContainer\").getChild(\"IdContainer\").getChild(\"TextArea\").props.text \u003d self.params.state[\u0027id\u0027]\n\texcept Exception as e:\n\t\tlogger.info(e.message)"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "openPopup": true,
+    "state": {
+      "asset": null,
+      "id": "",
+      "pad": null,
+      "type": null,
+      "well": null
+    },
+    "viewPort": {
+      "mobileView": false,
+      "pcView": false
+    }
+  },
+  "propConfig": {
+    "params.openPopup": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.state": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.viewPort": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 410,
+      "width": 350
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "50px"
+            },
+            "props": {
+              "style": {
+                "fontSize": "20px"
+              },
+              "text": "Setting External Reference Id",
+              "textStyle": {
+                "fontWeight": "bolder",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "36px",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "backgroundColor": "#0066FF"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "50px",
+              "grow": 1
+            },
+            "propConfig": {
+              "props.style.classes": {
+                "binding": {
+                  "config": {
+                    "path": ".../ButtonContainer.custom.status"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": "Add Successful",
+                          "output": "NotificationColors/Approved"
+                        },
+                        {
+                          "input": "Add Failed",
+                          "output": "NotificationColors/Danger"
+                        },
+                        {
+                          "input": "Gas Meter Not Found",
+                          "output": "NotificationColors/Warning"
+                        }
+                      ],
+                      "outputType": "style-list",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": ".../ButtonContainer.custom.status"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {},
+              "textStyle": {
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "AlertContainer"
+        },
+        "position": {
+          "basis": "36px"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "30%"
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "!{view.params.viewPort.mobileView}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.fontSize": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u002714px\u0027, if({view.params.viewPort.pcView}, \u002718px\u0027, \u002716px\u0027))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold",
+                    "paddingRight": "18px"
+                  },
+                  "text": "Asset"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Dropdown"
+                },
+                "position": {
+                  "basis": "70%"
+                },
+                "propConfig": {
+                  "props.placeholder.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u0027Asset*...\u0027, \u0027Asset...\u0027)"
+                      },
+                      "enabled": false,
+                      "type": "expr"
+                    }
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.state.asset \u003d currentValue.value"
+                    }
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "",
+                      "value": ""
+                    }
+                  ],
+                  "placeholder": {
+                    "text": "Asset..."
+                  },
+                  "style": {
+                    "backgroundColor": "#FFFFFF",
+                    "classes": "WellDetail/RoundedBorder",
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "fontWeight": "bold"
+                  },
+                  "value": null
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "LocContainer"
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u002750%\u0027, if({view.params.viewPort.pcView},\u002742px\u0027, \u002740%\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingLeft": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingRight": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "justify": "space-around"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "30%"
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "!{view.params.viewPort.mobileView}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.fontSize": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u002714px\u0027, if({view.params.viewPort.pcView}, \u002718px\u0027, \u002716px\u0027))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold",
+                    "paddingRight": "18px"
+                  },
+                  "text": "Pad*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Dropdown"
+                },
+                "position": {
+                  "basis": "70%"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "PadQuery"
+                      },
+                      "type": "query"
+                    }
+                  },
+                  "props.placeholder.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u0027Pad*...\u0027, \u0027Pad...\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.state.pad \u003d currentValue.value"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": {},
+                  "style": {
+                    "backgroundColor": "#FFFFFF",
+                    "classes": "WellDetail/RoundedBorder",
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "fontWeight": "bold"
+                  },
+                  "value": null
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "PadContainer"
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u002750%\u0027, if({view.params.viewPort.pcView},\u002742px\u0027, \u002740%\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingLeft": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingRight": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "justify": "space-around"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "30%"
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "!{view.params.viewPort.mobileView}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.fontSize": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u002714px\u0027, if({view.params.viewPort.pcView}, \u002718px\u0027, \u002716px\u0027))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold",
+                    "paddingRight": "18px"
+                  },
+                  "text": "Well*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Dropdown"
+                },
+                "position": {
+                  "basis": "70%"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "pad": "if({.../PadContainer/Dropdown.props.value} \u003d null, -1,{.../PadContainer/Dropdown.props.value}) "
+                        },
+                        "queryPath": "WellQuery"
+                      },
+                      "type": "query"
+                    }
+                  },
+                  "props.placeholder.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u0027Well*...\u0027, \u0027Well...\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.state.well \u003d currentValue.value\n\tif currentValue !\u003d None:\n\t\tself.parent.props.style.backgroundColor \u003d \u0027\u0027"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": {},
+                  "style": {
+                    "backgroundColor": "#FFFFFF",
+                    "classes": "WellDetail/RoundedBorder",
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "fontWeight": "bold"
+                  },
+                  "value": null
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t\u0027\u0027\u0027 Add external reference id\n\tReturns None\n\t\u0027\u0027\u0027\n\tlogger \u003d system.util.getLogger(\u0027IgnitionSystem\u0027)\n#\tInput Control preventing SQL injection attack\n\tpad \u003d self.parent.parent.getChild(\"InputContainer\").custom.input.pad\n\twell \u003d self.parent.parent.getChild(\"InputContainer\").custom.input.well\n\tdatapoint \u003d self.parent.parent.getChild(\"InputContainer\").custom.input.type\n\texternalId \u003d self.parent.parent.getChild(\"InputContainer\").custom.input.id\n\tlogger.info(str(type(datapoint)))\n\tif not isinstance(pad, long):\n\t\tlogger.fatal(\u0027External Reference Id Setting - Add \u003e\u003e Invalid Input 1\u0027)\n\t\treturn\n\tif not isinstance(well, long):\n\t\tlogger.fatal(\u0027External Reference Id Setting - Add \u003e\u003e Invalid Input 2\u0027)\n\t\treturn\n\tif not isinstance(datapoint, unicode):\n\t\tlogger.fatal(\u0027External Reference Id Setting - Add \u003e\u003e Invalid Input 3\u0027)\n\t\treturn\n\tif \u0027select\u0027 in externalId.lower() or \u0027insert\u0027 in externalId.lower() or \u0027delete\u0027 in externalId.lower() or \u0027update\u0027 in externalId.lower() or externalId.lower() \u003d\u003d \u0027null\u0027:\n\t\tlogger.fatal(\u0027External Reference Id Setting - Add \u003e\u003e Invalid Input 4\u0027)\n\t\treturn\n\t\t\n\tinsertQuery \u003d \u0027\u0027\n\tif \u0027Gas\u0027 not in datapoint:\n\t\tinsertQuery \u003d \u0027\u0027\u0027\n\t\tINSERT INTO external_reference (pad_id, wellsite_id, datapoint, external_ref_id)\n\t\tSELECT \n\t\t\t{pad}, \n\t\t\t{well}, \n\t\t\t\\\u0027{datapoint}\\\u0027,\n\t\t\t\\\u0027{externalId}\\\u0027\n\t\tWHERE NOT EXISTS (\n\t\t\tSELECT 1 \n\t\t\tFROM external_reference \n\t\t\tWHERE\n\t\t\t\tpad_id \u003d {pad}\n\t\t\tAND wellsite_id \u003d {well}\n\t\t\tAND datapoint \u003d \\\u0027{datapoint}\\\u0027\n\t\t\tAND external_ref_id \u003d \\\u0027{externalId}\\\u0027\n\t\t)\n\t\t\u0027\u0027\u0027.format(\n\t\t\tpad \u003d pad,\n\t\t\twell \u003d well,\n\t\t\tdatapoint \u003d \u0027WellHead\u0027 if datapoint \u003d\u003d \u0027Completion\u0027 else datapoint,\n\t\t\texternalId \u003d externalId\n\t\t)\n\t\ttry:\n\t\t\tres \u003d system.db.runUpdateQuery(insertQuery)\n\t\t\tif res \u003e 0:\n\t\t\t\tself.parent.custom.status \u003d \u0027Add Successful\u0027\n\t\t\telse:\n\t\t\t\tself.parent.custom.status \u003d \u0027Add Failed\u0027\n\t\texcept Exception as e:\n\t\t\tlogger.info(\u0027External Reference Id Setting - Add \u003e\u003e \u0027+ e.message)\n\t\tfinally:\n\t\t\tself.props.value \u003d 0"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "WellContainer"
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u002750%\u0027, if({view.params.viewPort.pcView},\u002742px\u0027, \u002740%\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingLeft": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingRight": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "justify": "space-around",
+              "style": {
+                "backgroundColor": ""
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "30%"
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "!{view.params.viewPort.mobileView}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.fontSize": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u002714px\u0027, if({view.params.viewPort.pcView}, \u002718px\u0027, \u002716px\u0027))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold",
+                    "paddingRight": "18px"
+                  },
+                  "text": "Type*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Dropdown"
+                },
+                "position": {
+                  "basis": "70%"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "designerUseLimit": false,
+                        "parameters": {
+                          "pad": "-1",
+                          "well": "-1"
+                        },
+                        "queryPath": "DatapointQuery"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tvalue \u003d system.dataset.addRow(value, [\u0027Gas Meter\u0027, \u0027Gas Meter\u0027])\n\tvalue \u003d system.dataset.addRow(value, [\u0027Other\u0027, \u0027Other\u0027])\n\treturn value",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    }
+                  },
+                  "props.placeholder.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u0027Type*...\u0027, \u0027Type...\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.state.type \u003d currentValue.value\n\tif currentValue !\u003d None:\n\t\tself.parent.props.style.backgroundColor \u003d \u0027\u0027"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": {},
+                  "style": {
+                    "backgroundColor": "#FFFFFF",
+                    "classes": "WellDetail/RoundedBorder",
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "fontWeight": "bold"
+                  },
+                  "value": null
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "TypeContainer"
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u002750%\u0027, if({view.params.viewPort.pcView},\u002742px\u0027, \u002740%\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingLeft": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingRight": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "justify": "space-around",
+              "style": {
+                "backgroundColor": ""
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "30%"
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "!{view.params.viewPort.mobileView}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.fontSize": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u002712px\u0027, if({view.params.viewPort.pcView}, \u002716px\u0027, \u002714px\u0027))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold",
+                    "paddingRight": "18px"
+                  },
+                  "text": "External Id*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onCompositionUpdate": {
+                      "config": {
+                        "script": "\tself.custom.input \u003d event.data"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "TextArea"
+                },
+                "position": {
+                  "basis": "70%"
+                },
+                "propConfig": {
+                  "props.placeholder": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u0027External Reference Id*...\u0027, \u0027External Reference Id...\u0027)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.state.id \u003d currentValue.value\n\tif currentValue.value !\u003d None or currentValue.value.strip(\u0027\\n\u0027) !\u003d \u0027\u0027:\n\t\tself.parent.props.style.backgroundColor \u003d \u0027\u0027"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "#FFFFFF",
+                    "classes": "WellDetail/RoundedBorder",
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "fontWeight": "bold"
+                  }
+                },
+                "type": "ia.input.text-area"
+              }
+            ],
+            "meta": {
+              "name": "IdContainer"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u002750%\u0027, if({view.params.viewPort.pcView},\u002775px\u0027, \u002740%\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingLeft": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingRight": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "justify": "space-around",
+              "style": {
+                "backgroundColor": ""
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "100%"
+                },
+                "props": {
+                  "style": {
+                    "fontSize": "10px",
+                    "fontWeight": "normal",
+                    "paddingRight": "18px",
+                    "textAlign": "center"
+                  },
+                  "text": "* is required"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "ReminderContainer"
+            },
+            "position": {
+              "basis": "18px",
+              "grow": 1,
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.paddingLeft": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingRight": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "justify": "space-around"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "InputContainer"
+        },
+        "position": {
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "custom.input": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "asset": "{./LocContainer/Dropdown.props.value}",
+                  "id": "{./IdContainer/TextArea.props.text}",
+                  "pad": "{./PadContainer/Dropdown.props.value}",
+                  "type": "{./TypeContainer/Dropdown.props.value}",
+                  "well": "{./WellContainer/Dropdown.props.value}"
+                },
+                "waitOnAll": true
+              },
+              "type": "expr-struct"
+            },
+            "onChange": {
+              "enabled": false,
+              "script": "\tself.view.params.state \u003d currentValue.value"
+            }
+          }
+        },
+        "props": {
+          "alignContent": "space-around",
+          "direction": "column",
+          "justify": "space-evenly",
+          "style": {
+            "marginBottom": "3px",
+            "marginLeft": "5px",
+            "marginRight": "5px",
+            "marginTop": "3px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "custom": {
+              "query": "\n\t\t\t\tUPDATE gasmeters\n\t\t\t\tSET external_reference_id \u003d \u0027test1\u0027\n\t\t\t\tFROM gasmeters gm\n\t\t\t\tLEFT JOIN gasmeter_types gt ON gt.id \u003d gm.gmTypeId\n\t\t\t\tWHERE padId \u003d 176\n\t\t\t\tAND wellsiteId \u003d 149\n\t\t\t\tAND gt.type \u003d \u0027Buy\u0027\n\t\t\t\tAND NOT EXISTS (\n\t\t\t\t\tSELECT 1\n\t\t\t\t\tFROM gasmeters \n\t\t\t\t\tWHERE external_reference_id \u003d \u0027test1\u0027\n\t\t\t\t)\n\t\t\t\t"
+            },
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t\u0027\u0027\u0027 Add external reference id\n\tReturns None\n\t\u0027\u0027\u0027\n\tlogger \u003d system.util.getLogger(\u0027IgnitionSystem\u0027)\n#\tInput Control preventing SQL injection attack\n\tpad \u003d self.parent.parent.getChild(\"InputContainer\").custom.input.pad\n\twell \u003d self.parent.parent.getChild(\"InputContainer\").custom.input.well\n\tdatapoint \u003d self.parent.parent.getChild(\"InputContainer\").custom.input.type\n\texternalId \u003d self.parent.parent.getChild(\"InputContainer\").custom.input.id\n\t\n\tinvalid \u003d True\n\tif not isinstance(pad, long):\n\t\tself.parent.parent.getChild(\"InputContainer\").getChild(\"PadContainer\").props.style.backgroundColor \u003d \u0027#FF000065\u0027\n\t\tlogger.fatal(\u0027External Reference Id Setting - Add \u003e\u003e Invalid Input 1\u0027)\n\t\tself.props.value \u003d 0\n\t\tinvalid \u003d  invalid and False \n\tif not isinstance(well, long):\n\t\tself.parent.parent.getChild(\"InputContainer\").getChild(\"WellContainer\").props.style.backgroundColor \u003d \u0027#FF000065\u0027\n\t\tlogger.fatal(\u0027External Reference Id Setting - Add \u003e\u003e Invalid Input 2\u0027)\n\t\tself.props.value \u003d 0\n\t\tinvalid \u003d invalid and False\n\tif not isinstance(datapoint, unicode):\n\t\tself.parent.parent.getChild(\"InputContainer\").getChild(\"TypeContainer\").props.style.backgroundColor \u003d \u0027#FF000065\u0027\n\t\tlogger.fatal(\u0027External Reference Id Setting - Add \u003e\u003e Invalid Input 3\u0027)\n\t\tself.props.value \u003d 0\n\t\tinvalid \u003d invalid and False\n\tif \u0027select\u0027 in externalId.lower() or \u0027insert\u0027 in externalId.lower() or \u0027delete\u0027 in externalId.lower() or \u0027update\u0027 in externalId.lower() or externalId.lower() \u003d\u003d \u0027null\u0027 or externalId.strip(\u0027\\n\u0027) \u003d\u003d \u0027\u0027:\n\t\tself.parent.parent.getChild(\"InputContainer\").getChild(\"IdContainer\").props.style.backgroundColor \u003d \u0027#FF000065\u0027\n\t\tlogger.fatal(\u0027External Reference Id Setting - Add \u003e\u003e Invalid Input 4\u0027)\n\t\tself.props.value \u003d 0\n\t\tinvalid \u003d invalid and False\n\t\n\tif not invalid:\n\t\treturn\n\t\t\n\tinsertQuery \u003d \u0027\u0027\n\tif \u0027Gas\u0027 not in datapoint:\n\t\ttry:\n\t\t\tres \u003d self.parent.parent.addExternalIdForNonGas(pad, well, datapoint, externalId)\n\t\t\tself.parent.custom.status \u003d res[\u0027status\u0027]\n\t\texcept Exception as e:\n\t\t\tlogger.info(\u0027External Reference Id Setting - Add \u003e\u003e \u0027+ e.message)\n\t\tfinally:\n\t\t\tself.props.value \u003d 0\n\telse:\n\t\tdatapoint \u003d datapoint.split(\u0027 - \u0027)[-1]\n\t\ttry:\n\t\t\tres \u003d self.parent.parent.addExternalIdForGas(pad, well, datapoint, externalId)\n\t\t\tself.parent.custom.status \u003d res[\u0027status\u0027]\n\t\texcept Exception as e:\n\t\t\tlogger.info(\u0027External Reference Id Setting - Add \u003e\u003e \u0027 + e.message)\n\t\tfinally:\n\t\t\tself.props.value \u003d 0"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "OneShotButton"
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "props": {
+              "confirm": {
+                "enabled": true
+              },
+              "disabledStyle": {
+                "classes": "Border Button"
+              },
+              "readyState": {
+                "icon": {
+                  "style": {
+                    "height": "24px",
+                    "width": "2rem"
+                  }
+                },
+                "style": {
+                  "backgroundColor": "#FFFFFF",
+                  "classes": "WellDetail/RoundedBorder",
+                  "color": "#000000",
+                  "fontSize": 16,
+                  "fontWeight": "bold"
+                },
+                "text": "Add"
+              },
+              "writingState": {
+                "icon": {
+                  "path": "material/hourglass_empty",
+                  "style": {
+                    "height": "24px",
+                    "width": "2rem"
+                  }
+                },
+                "style": {
+                  "classes": "WellDetail/RoundedBorder"
+                },
+                "text": "Adding"
+              }
+            },
+            "type": "ia.input.oneshotbutton"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tself.view.params.openPopup \u003d False\n\tsystem.perspective.closePopup(\u0027SettingExternalId\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button-Close"
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "#FFFFFF",
+                "classes": "WellDetail/RoundedBorder",
+                "color": "#000000",
+                "fontSize": 16,
+                "fontWeight": "bold"
+              },
+              "text": "Close"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "custom": {
+          "message": null,
+          "status": ""
+        },
+        "meta": {
+          "name": "ButtonContainer"
+        },
+        "position": {
+          "basis": "36px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "custom.status": {
+            "onChange": {
+              "enabled": null,
+              "script": "\timport time\n\tif currentValue.value \u003d\u003d \u0027Add Successful\u0027:\n\t\ttime.sleep(5)\n\t\tself.custom.status \u003d \u0027\u0027"
+            }
+          }
+        },
+        "props": {
+          "justify": "space-around",
+          "style": {
+            "backgroundColor": "#FAFAFB",
+            "bottom": "0px",
+            "marginBottom": "7px",
+            "position": "sticky  "
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "custom": {
+      "query": "\n\tSELECT \n\t\tgm.id,\n\t\tgm.name,\n\t\tgm.padId,\n\t\tgm.wellsiteId,\n\t\tgt.type\n\tFROM gasmeters gm\n\tLEFT JOIN gasmeter_types gt ON gm.gmTypeId \u003d gt.id\n\tWHERE (\n\t\tpadId \u003d 205\n\t\tAND wellSiteId \u003d 7\n\t\tAND gt.type \u003d \u0027Buy\u0027\n\t)\n\t"
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "#FAFAFB"
+      }
+    },
+    "scripts": {
+      "customMethods": [
+        {
+          "name": "addExternalIdForGas",
+          "params": [
+            "pad",
+            "well",
+            "datapoint",
+            "externalId"
+          ],
+          "script": "\t\u0027\u0027\u0027 Add external reference id for Gas meter\n\tArgs:\n\t\tpad (int): pad\u0027s id\n\t\twell (int): well\u0027s id\n\t\tdatapoint (str): gas meter type\n\t\texternalId (str): external reference id\n\tReturns {\n\t\trow (int): number of affected row,\n\t\tstatus (str): message of updating process\n\t}\n\t\u0027\u0027\u0027\n\t\n\tlogger \u003d system.util.getLogger(\u0027IgnitionSystem\u0027)\n\tscalarQuery \u003d \u0027\u0027\u0027\n\tSELECT \n\t\tgm.id,\n\t\tgm.name,\n\t\tgm.padId,\n\t\tgm.wellsiteId,\n\t\tgt.type\n\tFROM gasmeters gm\n\tLEFT JOIN gasmeter_types gt ON gm.gmTypeId \u003d gt.id\n\tWHERE (\n\t\tpadId \u003d {pad}\n\t\tAND wellSiteId \u003d {well}\n\t\tAND gt.type \u003d \\\u0027{datapoint}\\\u0027\n\t)\n\t\u0027\u0027\u0027.format(\n\t\tpad \u003d pad,\n\t\twell \u003d well,\n\t\tdatapoint \u003d datapoint\n\t)\n\ttry:\n\t\tres \u003d system.db.runScalarQuery(scalarQuery)\n\t\tquery \u003d \u0027\u0027\n\t\tif res is None:\n\t\t\tself.custom.query \u003d scalarQuery\n\t\t\treturn {\n\t\t\t\t\u0027row\u0027: 0,\n\t\t\t\t\u0027status\u0027: \u0027Gas Meter Not Found\u0027\n\t\t\t}\n\t\t\treturn\n\t\telse:\n\t\t\tcurrentDataQuery \u003d \u0027\u0027\u0027\n\t\t\tSELECT \n\t\t\t\tgm.id,\n\t\t\t\tgm.name,\n\t\t\t\tgm.padId,\n\t\t\t\tgm.wellsiteId,\n\t\t\t\tgm.gmTypeId,\n\t\t\t\tgm.external_reference_id\n\t\t\tFROM gasmeters gm\n\t\t\tLEFT JOIN gasmeter_types gt ON gm.gmTypeId \u003d gt.id\n\t\t\tWHERE padId \u003d {pad}\n\t\t\tAND wellsiteId \u003d {well}\n\t\t\tAND gt.type \u003d \\\u0027{datapoint}\\\u0027\n\t\t\tFOR XML RAW\n\t\t\t\u0027\u0027\u0027.format(\n\t\t\t\tpad \u003d pad,\n\t\t\t\twell \u003d well,\n\t\t\t\tdatapoint \u003d datapoint\n\t\t\t)\n\t\t\toldData \u003d system.db.runScalarQuery(currentDataQuery)\n\t\t\t\n\t\t\tquery \u003d \u0027\u0027\u0027\n\t\t\tUPDATE gasmeters\n\t\t\tSET external_reference_id \u003d \\\u0027{id}\\\u0027\n\t\t\tFROM gasmeters gm\n\t\t\tLEFT JOIN gasmeter_types gt ON gt.id \u003d gm.gmTypeId\n\t\t\tWHERE padId \u003d {pad}\n\t\t\tAND wellsiteId \u003d {well}\n\t\t\tAND gt.type \u003d \\\u0027{datapoint}\\\u0027\n\t\t\tAND NOT EXISTS (\n\t\t\t\tSELECT 1\n\t\t\t\tFROM gasmeters \n\t\t\t\tWHERE external_reference_id \u003d \\\u0027{id}\\\u0027\n\t\t\t)\n\t\t\t\u0027\u0027\u0027.format(\n\t\t\t\tpad \u003d pad,\n\t\t\t\twell \u003d well,\n\t\t\t\tdatapoint \u003d datapoint,\n\t\t\t\tid \u003d externalId\n\t\t\t)\n\t\tres \u003d system.db.runUpdateQuery(query)\n\t\tif res \u003d\u003d 0:\n\t\t\treturn {\n\t\t\t\t\u0027row\u0027: res,\n\t\t\t\t\u0027status\u0027: \u0027Add Failed\u0027\n\t\t\t}\n\t\t\n\t\tnewData \u003d system.db.runScalarQuery(currentDataQuery)\n\t\tinsertQuery \u003d \u0027\u0027\u0027\n\t\tINSERT INTO audit_log (table_name, action, old_data, new_data, modified_by, t_stamp)\n\t\tVALUES (\\\u0027gasmeters\\\u0027, \\\u0027ADD\\\u0027, \\\u0027{oldData}\\\u0027, \\\u0027{newData}\\\u0027, \\\u0027{user}\\\u0027, GETDATE())\n\t\t\u0027\u0027\u0027.format(\n\t\t\toldData \u003d oldData,\n\t\t\tnewData \u003d newData,\n\t\t\tuser \u003d self.session.props.auth.user.userName\n\t\t)\n\t\tsystem.db.runUpdateQuery(insertQuery)\n\t\treturn {\n\t\t\t\u0027row\u0027: res,\n\t\t\t\u0027status\u0027: \u0027Add Successful\u0027\n\t\t}\n\texcept Exception as e:\n\t\tlogger.info(\u0027External Reference Id Setting - Add \u003e\u003e \u0027 + e.message)\n\t\treturn {\n\t\t\t\u0027row\u0027: res,\n\t\t\t\u0027status\u0027: \u0027Add Failed\u0027\n\t\t}"
+        },
+        {
+          "name": "addExternalIdForNonGas",
+          "params": [
+            "pad",
+            "well",
+            "datapoint",
+            "externalId"
+          ],
+          "script": "\t\u0027\u0027\u0027 Add external reference id for non gas meter data\n\tArgs:\n\t\tpad (int): pad\u0027s id\n\t\twell (int): well\u0027s id\n\t\tdatapoint (str): tag\u0027s endpoint\n\t\texternalId (str): external reference id\n\tReturns {\n\t\trow (int): number of affected row,\n\t\tstatus (str): message of updating process\n\t}\n\t\u0027\u0027\u0027\n\tlogger \u003d system.util.getLogger(\u0027IgnitionSystem\u0027)\n\tinsertQuery \u003d \u0027\u0027\u0027\n\tINSERT INTO external_reference (pad_id, wellsite_id, datapoint, external_ref_id)\n\tSELECT \n\t\t{pad}, \n\t\t{well}, \n\t\t\\\u0027{datapoint}\\\u0027,\n\t\t\\\u0027{externalId}\\\u0027\n\tWHERE NOT EXISTS (\n\t\tSELECT 1 \n\t\tFROM external_reference \n\t\tWHERE (\n\t\t\tpad_id \u003d {pad}\n\t\t\tAND wellsite_id \u003d {well}\n\t\t\tAND datapoint \u003d \\\u0027{datapoint}\\\u0027\n\t\t)\n\t\tOR external_ref_id \u003d \\\u0027{externalId}\\\u0027\n\t)\n\t\u0027\u0027\u0027.format(\n\t\tpad \u003d pad,\n\t\twell \u003d well,\n\t\tdatapoint \u003d \u0027WellHead\u0027 if datapoint \u003d\u003d \u0027Completion\u0027 else datapoint,\n\t\texternalId \u003d externalId\n\t)\n\ttry:\n\t\tres \u003d system.db.runUpdateQuery(insertQuery)\n\t\tif res \u003d\u003d 0 or res is None:\n\t\t\treturn {\n\t\t\t\t\u0027row\u0027: res,\n\t\t\t\t\u0027status\u0027: \u0027Add Failed\u0027\n\t\t\t}\n\t\t\n\t\tcurrentDataQuery \u003d \u0027\u0027\u0027\n\t\tSELECT *\n\t\tFROM external_reference\n\t\tWHERE pad_id \u003d {pad}\n\t\tAND wellsite_id \u003d {well}\n\t\tAND datapoint \u003d \\\u0027{datapoint}\\\u0027\n\t\tFOR XML RAW\n\t\t\u0027\u0027\u0027.format(\n\t\t\tpad \u003d pad,\n\t\t\twell \u003d well,\n\t\t\tdatapoint \u003d datapoint\n\t\t)\n\t\tnewData \u003d system.db.runScalarQuery(currentDataQuery)\n\t\tinsertQuery \u003d \u0027\u0027\u0027\n\t\tINSERT INTO audit_log (table_name, action, old_data, new_data, modified_by, t_stamp)\n\t\tVALUES (\\\u0027external_reference\\\u0027, \\\u0027ADD\\\u0027, \\\u0027{oldData}\\\u0027, \\\u0027{newData}\\\u0027, \\\u0027{user}\\\u0027, GETDATE())\n\t\t\u0027\u0027\u0027.format(\n\t\t\toldData \u003d None,\n\t\t\tnewData \u003d newData,\n\t\t\tuser \u003d self.session.props.auth.user.userName\n\t\t)\n\t\tsystem.db.runUpdateQuery(insertQuery)\n\t\treturn {\n\t\t\t\u0027row\u0027: res,\n\t\t\t\u0027status\u0027: \u0027Add Successful\u0027\n\t\t}\n\texcept Exception as e:\n\t\tlogger.info(\u0027External Reference Id Setting - Add \u003e\u003e \u0027+ e.message)"
+        }
+      ],
+      "extensionFunctions": null,
+      "messageHandlers": []
+    },
+    "type": "ia.container.flex"
+  }
+}

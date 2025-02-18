@@ -1,0 +1,1736 @@
+{
+  "custom": {
+    "openPopup": false,
+    "state": {},
+    "viewport": {
+      "height": 0,
+      "width": 0
+    }
+  },
+  "params": {
+    "status": "",
+    "viewPort": {
+      "mobileView": false,
+      "pcView": true
+    }
+  },
+  "propConfig": {
+    "custom.openPopup": {
+      "persistent": true
+    },
+    "custom.state": {
+      "persistent": true
+    },
+    "custom.viewport": {
+      "binding": {
+        "config": {
+          "struct": {
+            "height": "{page.props.dimensions.viewport.height}",
+            "width": "{page.props.dimensions.viewport.width}"
+          },
+          "waitOnAll": true
+        },
+        "type": "expr-struct"
+      },
+      "onChange": {
+        "enabled": null,
+        "script": "\tif not self.custom.openPopup:\n\t\treturn\n\t\n\timport time\n\tlogger \u003d system.util.getLogger(\u0027IgnitionSystem\u0027)\n\tsystem.perspective.closePopup(\u0027SettingExternalId\u0027)\n\ttime.sleep(.5)\n\tlogger.info(\u0027transfer: \u0027+str(self.custom.state))\n\tparams \u003d {\n\t\t\u0027state\u0027: self.custom.state,\n\t\t\u0027viewPort\u0027: self.params.viewPort\n\t}\n\t\n\tisMobileLayout \u003d self.view.params.viewPort.mobileView\n\twidth, height \u003d 0, 0\n\tif isMobileLayout:\n\t\twidth \u003d self.page.props.dimensions.viewport.width\n\t\theight \u003d self.page.props.dimensions.viewport.height\n\telif self.page.props.dimensions.viewport.width \u003e 750 and self.page.props.dimensions.viewport.width \u003c 1400:\n\t\twidth \u003d \u0027400px\u0027 if 400 \u003c self.page.props.dimensions.viewport.width * 0.9 else self.page.props.dimensions.viewport.width * 0.9\n\t\theight \u003d \u0027450px\u0027 if 450 \u003c self.page.props.dimensions.viewport.height * 0.85 else self.page.props.dimensions.viewport.height * 0.85\n\telse:\n\t\twidth \u003d \u0027450px\u0027\n\t\theight \u003d \u0027450px\u0027\n\tposition \u003d {\u0027width\u0027: width, \u0027height\u0027: height}\n\tlogger.info(str(params[\u0027state\u0027]))\n\tsystem.perspective.openPopup(\n\t\t\u0027SettingExternalId\u0027,\n\t\t\u0027Setting/ExternalId/Components/Popups/Setting\u0027,\n\t\tparams \u003d params,\n\t\tmodal \u003d True,\n\t\tviewportBound \u003d True,\n\t\tdraggable \u003d False,\n\t\tposition \u003d position,\n\t\tresizable \u003d True,\n\t\tshowCloseIcon \u003d False\n\t)\n#\ttry:\n#\t\t\n#\texcept Exception as e:\n#\t\tlogger.fatal(\u0027External Reference Id Setting - Add \u003e\u003e \u0027+ e.message)"
+      },
+      "persistent": true
+    },
+    "params.status": {
+      "binding": {
+        "config": {
+          "expression": "{/root/ButtonContainer.custom.status}  "
+        },
+        "type": "expr"
+      },
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.viewPort": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 827,
+      "width": 894
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "30%"
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "!{view.params.viewPort.mobileView}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.fontSize": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u002714px\u0027, if({view.params.viewPort.pcView}, \u002718px\u0027, \u002716px\u0027))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold",
+                    "paddingRight": "18px"
+                  },
+                  "text": "Asset"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Dropdown"
+                },
+                "position": {
+                  "basis": "70%"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "polling": {
+                          "enabled": true,
+                          "rate": "30"
+                        },
+                        "queryPath": "AssetDropdown"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": {
+                    "text": "Asset..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "backgroundColor": "#FFFFFF",
+                    "classes": "WellDetail/RoundedBorder",
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "marginLeft": "16px"
+                  },
+                  "value": null
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "LocContainer"
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u002750%\u0027, if({view.params.viewPort.pcView},\u0027320px\u0027, \u002740%\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingLeft": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingRight": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "30%"
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "!{view.params.viewPort.mobileView}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.fontSize": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u002714px\u0027, if({view.params.viewPort.pcView}, \u002718px\u0027, \u002716px\u0027))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold",
+                    "paddingRight": "18px"
+                  },
+                  "text": "Pad"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Dropdown"
+                },
+                "position": {
+                  "basis": "70%"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "asset": "if({..../InputContainer.custom.filter.asset} \u003d null, -1, {..../InputContainer.custom.filter.asset})"
+                        },
+                        "polling": {
+                          "enabled": true,
+                          "rate": "30"
+                        },
+                        "queryPath": "PadQuery"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": {
+                    "text": "Pad..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "backgroundColor": "#FFFFFF",
+                    "classes": "WellDetail/RoundedBorder",
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "marginLeft": "16px"
+                  },
+                  "value": null
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "PadContainer"
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u002750%\u0027, if({view.params.viewPort.pcView},\u0027320px\u0027, \u002740%\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingLeft": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingRight": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "30%"
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "!{view.params.viewPort.mobileView}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.fontSize": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u002714px\u0027, if({view.params.viewPort.pcView}, \u002718px\u0027, \u002716px\u0027))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold",
+                    "paddingRight": "18px"
+                  },
+                  "text": "Well"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Dropdown"
+                },
+                "position": {
+                  "basis": "70%"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "pad": "if({.../PadContainer/Dropdown.props.value} \u003d null, -1,{.../PadContainer/Dropdown.props.value}) "
+                        },
+                        "polling": {
+                          "enabled": true,
+                          "rate": "30"
+                        },
+                        "queryPath": "WellQuery"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": {
+                    "text": "Wellsite..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "backgroundColor": "#FFFFFF",
+                    "classes": "WellDetail/RoundedBorder",
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "marginLeft": "16px"
+                  },
+                  "value": null
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "WellContainer"
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u002750%\u0027, if({view.params.viewPort.pcView},\u0027320px\u0027, \u002740%\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingLeft": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingRight": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "30%"
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "!{view.params.viewPort.mobileView}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.fontSize": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({view.params.viewPort.mobileView}, \u002714px\u0027, if({view.params.viewPort.pcView}, \u002718px\u0027, \u002716px\u0027))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold",
+                    "paddingRight": "18px"
+                  },
+                  "text": "Type"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Dropdown"
+                },
+                "position": {
+                  "basis": "70%"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "designerUseLimit": false,
+                        "parameters": {
+                          "pad": "if({..../InputContainer.custom.filter.pad} \u003d null, -1,{..../InputContainer.custom.filter.pad}) ",
+                          "well": "if({..../InputContainer.custom.filter.well} \u003d null, -1,{..../InputContainer.custom.filter.well}) "
+                        },
+                        "polling": {
+                          "enabled": true,
+                          "rate": "30"
+                        },
+                        "queryPath": "DatapointQuery"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": {
+                    "text": "Type..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "backgroundColor": "#FFFFFF",
+                    "classes": "WellDetail/RoundedBorder",
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "marginLeft": "16px"
+                  },
+                  "value": null
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "TypeContainer"
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u002750%\u0027, if({view.params.viewPort.pcView},\u0027320px\u0027, \u002740%\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingLeft": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingRight": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "TextField"
+                },
+                "position": {
+                  "basis": "32px"
+                },
+                "props": {
+                  "placeholder": "Other...",
+                  "style": {
+                    "backgroundColor": "#FFFFFF",
+                    "classes": "WellDetail/RoundedBorder",
+                    "color": "#000000",
+                    "fontSize": 16,
+                    "fontWeight": "bold"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "OtherTypeContainer"
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u002750%\u0027, if({view.params.viewPort.pcView},\u0027320px\u0027, \u002740%\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "expression": "{../TypeContainer/Dropdown.props.value} \u003d \u0027Other\u0027"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingLeft": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.paddingRight": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00270px\u0027, \u002716px\u0027) "
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "InputContainer"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "custom.filter": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "asset": "{./LocContainer/Dropdown.props.value}",
+                  "pad": "{./PadContainer/Dropdown.props.value}",
+                  "type": "{./TypeContainer/Dropdown.props.value}",
+                  "well": "{./WellContainer/Dropdown.props.value}"
+                },
+                "waitOnAll": false
+              },
+              "type": "expr-struct"
+            }
+          },
+          "position.basis": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.viewPort.mobileView}, \u0027auto\u0027, \u0027100px\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "alignContent": "center",
+          "justify": "space-evenly",
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onRowDoubleClick": {
+                  "config": {
+                    "script": "\tlogger \u003d system.util.getLogger(\u0027IgnitionSystem\u0027)\n\twell \u003d self.props.selection.data[0].wellsite_id\n\tparams \u003d {\n\t\t\u0027viewPort\u0027: self.view.params.viewPort,\n\t\t\u0027openPopup\u0027: True,\n\t\t\u0027state\u0027: {\n\t\t\t\u0027action\u0027: \u0027Update\u0027,\n\t\t\t\u0027id\u0027: self.props.selection.data[0].id,\n\t\t\t\u0027pad\u0027: self.props.selection.data[0].pad_id,\n\t\t\t\u0027well\u0027: well if well is not None else 0 if well is None and self.props.selection.data[0].pad_id is not None and self.props.selection.data[0].datapoint is not None and self.props.selection.data[0].external_ref_id is not None else None,\n\t\t\t\u0027type\u0027: self.props.selection.data[0].datapoint,\n\t\t\t\u0027external_ref_id\u0027: self.props.selection.data[0].external_ref_id,\n\t\t\t\u0027phase\u0027: \u0027Initial\u0027\n\t\t}\n\t}\n\tisMobileLayout \u003d self.view.params.viewPort.mobileView\n\twidth, height \u003d 0, 0\n\tif isMobileLayout:\n\t\twidth \u003d self.page.props.dimensions.viewport.width\n\t\theight \u003d self.page.props.dimensions.viewport.height\n\telif self.page.props.dimensions.viewport.width \u003e 750 and self.page.props.dimensions.viewport.width \u003c 1400:\n\t\twidth \u003d \u0027700px\u0027\n\t\theight \u003d \u0027450px\u0027\n\telse:\n\t\twidth \u003d \u0027700px\u0027\n\t\theight \u003d \u0027600px\u0027\n\tposition \u003d {\u0027width\u0027: width, \u0027height\u0027: height}\n\ttry:\n\t\tsystem.perspective.togglePopup(\n\t\t\t\u0027SettingExternalId\u0027,\n\t\t\t\u0027Setting/ExternalId/Components/Popups/Setting\u0027,\n\t\t\tparams \u003d params,\n\t\t\tmodal \u003d True,\n\t\t\tviewportBound \u003d True,\n\t\t\tdraggable \u003d False,\n\t\t\tposition \u003d position,\n\t\t\tresizable \u003d True,\n\t\t\tshowCloseIcon \u003d False\n\t\t)\n\t\tself.view.custom.openPopup \u003d True\n\texcept Exception as e:\n\t\tlogger.fatal(\u0027External Reference Id Setting - Setting \u003e\u003e \u0027+ e.message)\n\tfinally:\n\t\tself.props.value \u003d 0"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Table"
+            },
+            "position": {
+              "basis": "70%",
+              "grow": 1
+            },
+            "propConfig": {
+              "props.columns[0].visible": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, false, true)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.data": {
+                "binding": {
+                  "config": {
+                    "designerUseLimit": false,
+                    "parameters": {
+                      "datapoint": "if({/root.custom.filter.type} \u003d null, \u0027None\u0027,split({/root.custom.filter.type}, \u0027 - \u0027)[1,0]) ",
+                      "pid": "if({/root.custom.filter.pid} \u003d null, -1,{/root.custom.filter.pid}) ",
+                      "wid": "if({/root.custom.filter.wid} \u003d null, -1,{/root.custom.filter.wid}) "
+                    },
+                    "polling": {
+                      "enabled": true,
+                      "rate": "5"
+                    },
+                    "queryPath": "ExternalIdQuery"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "columns": [
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "padname",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "wellname",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "datapoint",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "external_ref_id",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "pad_id",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": false,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "wellsite_id",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": false,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "id",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": false,
+                  "width": ""
+                }
+              ],
+              "pager": {
+                "activeOption": 50
+              },
+              "selection": {
+                "mode": "single interval"
+              }
+            },
+            "type": "ia.display.table"
+          }
+        ],
+        "custom": {
+          "editedCell": {
+            "column": "datapoint",
+            "row": 5
+          },
+          "editedRows": {
+            "Gas": [],
+            "NotGas": []
+          }
+        },
+        "meta": {
+          "name": "OutputContainer"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "position.basis": {
+            "binding": {
+              "config": {
+                "path": "view.params.viewPort.mobileView"
+              },
+              "transforms": [
+                {
+                  "fallback": null,
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "65%"
+                    },
+                    {
+                      "input": false,
+                      "output": "80%"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tlogger \u003d system.util.getLogger(\u0027IgnitionSystem\u0027)\n\tparams \u003d {\n\t\t\u0027viewPort\u0027: self.view.params.viewPort,\n\t\t\u0027openPopup\u0027: True,\n\t\t\u0027state\u0027: {\n\t\t\t\u0027action\u0027: \u0027Add\u0027,\n\t\t\t\u0027phase\u0027: \u0027Initial\u0027\n\t\t}\n\t}\n\t\n\tisMobileLayout \u003d self.view.params.viewPort.mobileView\n\twidth, height \u003d 0, 0\n\tif isMobileLayout:\n\t\twidth \u003d self.page.props.dimensions.viewport.width\n\t\theight \u003d self.page.props.dimensions.viewport.height\n\telif self.page.props.dimensions.viewport.width \u003e 750 and self.page.props.dimensions.viewport.width \u003c 1400:\n\t\twidth \u003d \u0027400px\u0027 if 400 \u003c self.page.props.dimensions.viewport.width * 0.9 else self.page.props.dimensions.viewport.width * 0.9\n\t\theight \u003d \u0027450px\u0027 if 450 \u003c self.page.props.dimensions.viewport.height * 0.85 else self.page.props.dimensions.viewport.height * 0.85\n\telse:\n\t\twidth \u003d \u0027450px\u0027\n\t\theight \u003d \u0027450px\u0027\n\tposition \u003d {\u0027width\u0027: width, \u0027height\u0027: height}\n\ttry:\n\t\tsystem.perspective.togglePopup(\n\t\t\t\u0027SettingExternalId\u0027,\n\t\t\t\u0027Setting/ExternalId/Components/Popups/Setting\u0027,\n\t\t\tparams \u003d params,\n\t\t\tmodal \u003d True,\n\t\t\tviewportBound \u003d True,\n\t\t\tdraggable \u003d False,\n\t\t\tposition \u003d position,\n\t\t\tresizable \u003d True,\n\t\t\tshowCloseIcon \u003d False\n\t\t)\n\t\tself.view.custom.openPopup \u003d True\n\texcept Exception as e:\n\t\tlogger.fatal(\u0027External Reference Id Setting - Setting \u003e\u003e \u0027+ e.message)\n\tfinally:\n\t\tself.props.value \u003d 0"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "OneShotButton-Add"
+            },
+            "position": {
+              "basis": "150px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.marginBottom": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00277px\u0027, if({view.params.viewPort.pcView},\u00275px\u0027, \u00273px\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.marginTop": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00277px\u0027, if({view.params.viewPort.pcView},\u00275px\u0027, \u00273px\u0027))"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "readyState": {
+                "icon": {
+                  "style": {
+                    "height": "24px",
+                    "width": "2rem"
+                  }
+                },
+                "style": {
+                  "backgroundColor": "#FFFFFF",
+                  "classes": "WellDetail/RoundedBorder",
+                  "color": "#000000",
+                  "fontSize": 16,
+                  "fontWeight": "bold"
+                },
+                "text": "Add"
+              },
+              "style": {
+                "marginLeft": "16px",
+                "marginRight": "16px"
+              },
+              "writingState": {
+                "icon": {
+                  "path": "material/hourglass_empty",
+                  "style": {
+                    "height": "24px",
+                    "width": "2rem"
+                  }
+                },
+                "text": ""
+              }
+            },
+            "type": "ia.input.oneshotbutton"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tlogger \u003d system.util.getLogger(\u0027IgnitionSystem\u0027)\n\teditedRows \u003d self.parent.parent.getChild(\"OutputContainer\").custom.editedRows\n\t\n\tdef updateExternalId_thread(newValues, dataType, logger):\n\t\t\u0027\u0027\u0027Create a new thread to update external id for non gas data\n\t\tArgs:\n\t\t\tnewData (dict):\n\t\t\t\tid (int): id of either external_reference table or gasmeters table\n\t\t\t\tedit_col (str): name of editing column\n\t\t\t\tpad_id (int): id of pad\n\t\t\t\twellsite_id (int): id of wellsite\n\t\t\t\texternal_ref_id (str): external reference id\n\t\t\t\tdatapoint (str): datapoint of data coming from tag\n\t\t\tlogger (system.logger): log activity\n\t\t\n\t\tReturns nothing\n\t\t\u0027\u0027\u0027\n\t\ttry:\n\t\t\tif dataType \u003d\u003d \u0027NotGas\u0027:\n\t\t\t\tres \u003d self.parent.parent.updateExternalIdNotGas(newValues)\n\t\t\tif dataType \u003d\u003d \u0027Gas\u0027:\n\t\t\t\tres \u003d self.parent.parent.updateExternalIdGas(newValues)\n\t\t\tif res is None or res \u003d\u003d 0:\n\t\t\t\tself.parent.custom.status \u003d \u0027Update Failed\u0027\n\t\t\telse:\n\t\t\t\tif self.parent.custom.status \u003d\u003d \u0027Update Failed\u0027:\n\t\t\t\t\treturn\n\t\t\t\t\n\t\t\t\tself.parent.custom.status \u003d \u0027Update Successful\u0027\n\t\texcept Exception as e:\n\t\t\tself.parent.parent.getChild(\"FailedOutputContainer\").custom.failedRows[dataType].append(newValues)\n\t\t\tself.parent.custom.status \u003d \u0027Update Failed\u0027\n\t\t\tlogger.info(\u0027External Id Setting - Update \u003e\u003e Update Failed!\u0027)\n\t\t\tlogger.info(e.message)\n\t\n\t\n\tif editedRows[\u0027NotGas\u0027]:\n\t\tfor row in editedRows[\u0027NotGas\u0027]:\n\t\t\tsystem.util.invokeAsynchronous(updateExternalId_thread, [row, \u0027NotGas\u0027, logger])\n\tif editedRows[\u0027Gas\u0027]:\n\t\tfor row in editedRows[\u0027Gas\u0027]:\n\t\t\tsystem.util.invokeAsynchronous(updateExternalId_thread, [row, \u0027Gas\u0027, logger])\n\n\tself.props.value \u003d 0\n\tself.parent.parent.getChild(\"OutputContainer\").custom.editedRows.Gas \u003d []\n\tself.parent.parent.getChild(\"OutputContainer\").custom.editedRows.NotGas \u003d []\n\tself.getSibling(\"OneShotButton-Clear\").props.value \u003d 1"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "OneShotButton-Update"
+            },
+            "position": {
+              "basis": "150px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.marginBottom": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00277px\u0027, if({view.params.viewPort.pcView},\u00275px\u0027, \u00273px\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.marginTop": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00277px\u0027, if({view.params.viewPort.pcView},\u00275px\u0027, \u00273px\u0027))"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "confirm": {
+                "enabled": true
+              },
+              "readyState": {
+                "icon": {
+                  "style": {
+                    "height": "24px",
+                    "width": "2rem"
+                  }
+                },
+                "style": {
+                  "backgroundColor": "#FFFFFF",
+                  "classes": "WellDetail/RoundedBorder",
+                  "color": "#000000",
+                  "fontSize": 16,
+                  "fontWeight": "bold"
+                },
+                "text": "Update"
+              },
+              "style": {
+                "marginLeft": "16px",
+                "marginRight": "16px"
+              },
+              "writingState": {
+                "icon": {
+                  "path": "material/hourglass_empty",
+                  "style": {
+                    "height": "24px",
+                    "width": "2rem"
+                  }
+                },
+                "text": ""
+              }
+            },
+            "type": "ia.input.oneshotbutton"
+          },
+          {
+            "custom": {
+              "selectedData": []
+            },
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tselectedData \u003d self.parent.parent.getChild(\"OutputContainer\").getChild(\"Table\").props.selection.data\n\tif selectedData is None or len(selectedData) \u003d\u003d 0:\n\t\tself.props.value \u003d 0\n\t\treturn\n\t\n\tselectedData \u003d selectedData[0]\n\tnewVal \u003d {\n\t\t\u0027id\u0027: selectedData[\u0027id\u0027],\n\t\t\u0027pad_id\u0027: selectedData[\u0027pad_id\u0027],\n\t\t\u0027wellsite_id\u0027: selectedData[\u0027wellsite_id\u0027],\n\t\t\u0027external_ref_id\u0027: selectedData[\u0027external_ref_id\u0027],\n\t\t\u0027datapoint\u0027: selectedData[\u0027datapoint\u0027],\n\t\t\u0027edit_col\u0027: \u0027external_ref_id\u0027\n\t}\n\tres \u003d None\n\tif \u0027Gas - \u0027 in selectedData[\u0027datapoint\u0027]:\n\t\tres \u003d self.parent.parent.deleteExternalIdGas(newVal)\n\telse:\n\t\tres \u003d self.parent.parent.deleteExternalIdNotGas(newVal)\n\t\n\tif res:\n\t\tself.props.value \u003d 0\n\t\tself.getSibling(\"OneShotButton-Clear\").props.value \u003d 1\n\t\tself.parent.parent.getChild(\"OutputContainer\").getChild(\"Table\").props.selection.selectedRow \u003d None\n\telse:\n\t\tself.props.value \u003d 0"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "OneShotButton-Delete"
+            },
+            "position": {
+              "basis": "150px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.marginBottom": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00277px\u0027, if({view.params.viewPort.pcView},\u00275px\u0027, \u00273px\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.marginTop": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00277px\u0027, if({view.params.viewPort.pcView},\u00275px\u0027, \u00273px\u0027))"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "confirm": {
+                "enabled": true
+              },
+              "readyState": {
+                "icon": {
+                  "style": {
+                    "height": "24px",
+                    "width": "2rem"
+                  }
+                },
+                "style": {
+                  "backgroundColor": "#FFFFFF",
+                  "classes": "WellDetail/RoundedBorder",
+                  "color": "#000000",
+                  "fontSize": 16,
+                  "fontWeight": "bold"
+                },
+                "text": "Delete"
+              },
+              "style": {
+                "marginLeft": "16px",
+                "marginRight": "16px"
+              },
+              "writingState": {
+                "icon": {
+                  "path": "material/hourglass_empty",
+                  "style": {
+                    "height": "24px",
+                    "width": "2rem"
+                  }
+                },
+                "text": ""
+              }
+            },
+            "type": "ia.input.oneshotbutton"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tself.parent.parent.getChild(\"InputContainer\").getChild(\"LocContainer\").getChild(\"Dropdown\").props.value \u003d None\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"PadContainer\").getChild(\"Dropdown\").props.value \u003d None\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"WellContainer\").getChild(\"Dropdown\").props.value \u003d None\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"TypeContainer\").getChild(\"Dropdown\").props.value \u003d None\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"OtherTypeContainer\").getChild(\"TextField\").props.text \u003d \u0027\u0027\n\tself.parent.parent.getChild(\"OutputContainer\").custom.editedRows.Gas \u003d []\n\tself.parent.parent.getChild(\"OutputContainer\").custom.editedRows.NotGas \u003d []\n\tself.props.value \u003d 0\n\tself.parent.custom.status \u003d \u0027\u0027"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "OneShotButton-Clear"
+            },
+            "position": {
+              "basis": "150px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.marginBottom": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00277px\u0027, if({view.params.viewPort.pcView},\u00275px\u0027, \u00273px\u0027)) "
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.style.marginTop": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.viewPort.mobileView}, \u00277px\u0027, if({view.params.viewPort.pcView},\u00275px\u0027, \u00273px\u0027))"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.value": {
+                "onChange": {
+                  "enabled": null,
+                  "script": "\tif currentValue.value \u003d\u003d 0:\n\t\timport time\n\t\tif self.parent.custom.status \u003d\u003d \u0027Update Successful\u0027:\n\t\t\ttime.sleep(3)\n\t\t\tself.parent.custom.status \u003d \u0027\u0027\n\t\treturn\n\t\t\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"LocContainer\").getChild(\"Dropdown\").props.value \u003d None\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"PadContainer\").getChild(\"Dropdown\").props.value \u003d None\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"WellContainer\").getChild(\"Dropdown\").props.value \u003d None\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"TypeContainer\").getChild(\"Dropdown\").props.value \u003d None\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"OtherTypeContainer\").getChild(\"TextField\").props.text \u003d \u0027\u0027\n\tself.parent.parent.getChild(\"OutputContainer\").custom.editedRows.Gas \u003d []\n\tself.parent.parent.getChild(\"OutputContainer\").custom.editedRows.NotGas \u003d []\n\tself.props.value \u003d 0"
+                }
+              }
+            },
+            "props": {
+              "readyState": {
+                "icon": {
+                  "style": {
+                    "height": "24px",
+                    "width": "2rem"
+                  }
+                },
+                "style": {
+                  "backgroundColor": "#FFFFFF",
+                  "classes": "WellDetail/RoundedBorder",
+                  "color": "#000000",
+                  "fontSize": 16,
+                  "fontWeight": "bold"
+                },
+                "text": "Clear"
+              },
+              "style": {
+                "marginLeft": "16px",
+                "marginRight": "16px"
+              },
+              "writingState": {
+                "icon": {
+                  "path": "material/hourglass_empty",
+                  "style": {
+                    "height": "24px",
+                    "width": "2rem"
+                  }
+                },
+                "text": ""
+              }
+            },
+            "type": "ia.input.oneshotbutton"
+          }
+        ],
+        "custom": {
+          "isLoading": false,
+          "status": ""
+        },
+        "meta": {
+          "name": "ButtonContainer"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "custom.status": {
+            "onChange": {
+              "enabled": null,
+              "script": "\tif currentValue.value \u003d\u003d \u0027Update Successful\u0027:\n\t\timport time\n\t\ttime.sleep(3)\n\t\tself.custom.status \u003d \u0027\u0027"
+            }
+          }
+        },
+        "props": {
+          "justify": "center",
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.filter": {
+        "binding": {
+          "config": {
+            "struct": {
+              "locId": "{./InputContainer/LocContainer/Dropdown.props.value}",
+              "pid": "{./InputContainer/PadContainer/Dropdown.props.value}",
+              "type": "{./InputContainer/TypeContainer/Dropdown.props.value}",
+              "wid": "{./InputContainer/WellContainer/Dropdown.props.value}"
+            },
+            "waitOnAll": true
+          },
+          "type": "expr-struct"
+        }
+      }
+    },
+    "props": {
+      "direction": "column"
+    },
+    "scripts": {
+      "customMethods": [
+        {
+          "name": "deleteExternalIdGas",
+          "params": [
+            "newData"
+          ],
+          "script": "\t\u0027\u0027\u0027 Delete external reference id of any data that is gas meter\n\tArgs:\n\t\tnewData (dict):\n\t\t\tid (int): id of either external_reference table or gasmeters table\n\t\t\tedit_col (str): name of editing column\n\t\t\tpad_id (int): id of pad\n\t\t\twellsite_id (int): id of wellsite\n\t\t\texternal_ref_id (str): external reference id\n\t\t\tdatapoint (str): datapoint of data coming from tag\n\t\t\n\tReturns True if deleted successfully, False otheriwse\n\t\u0027\u0027\u0027\n\tlogger \u003d system.util.getLogger(\u0027IgnitionSystem\u0027)\n#\tControl Input Preventing SQL Injection Attack\n\tid \u003d newData[\u0027id\u0027]\n\tpadId \u003d newData[\u0027pad_id\u0027]\n\teditCol \u003d newData[\u0027edit_col\u0027]\n\twellId \u003d newData[\u0027wellsite_id\u0027]\n\texternalId \u003d newData[\u0027external_ref_id\u0027]\n\tdatapoint \u003d newData[\u0027datapoint\u0027] \n\tif isinstance(editCol, str)\\\n\t\t\tand isinstance(padId, int)\\\n\t\t\tand isinstance(wellId, int)\\\n\t\t\tand isinstance(externalId, str)\\\n\t\t\tand isinstance(id, int)\\\n\t\t\tand isinstance(datapoint, str):\n\t\tlogger.fatal(\u0027External Reference Id Setting \u003e\u003e Unvalid input\u0027)\n\t\treturn False\n\t\n#\tPrepare data\n\tuserName \u003d self.session.props.auth.user.userName\n\told_data, new_data \u003d None, None\n\t\n#\tRetrieve old data\n\tquery \u003d \u0027\u0027\u0027\n\tSELECT * FROM gasmeters\n\tWHERE id \u003d {id}\n\tFOR XML RAW\n\t\u0027\u0027\u0027.format(id \u003d id)\n\told_data \u003d system.db.runScalarQuery(query)\n\n#\tUpdate external_reference table\n\tupdateQuery \u003d \u0027\u0027\u0027\n\tUPDATE gasmeters\n\tSET external_reference_id \u003d NULL\n\tWHERE id \u003d {id}\n\t\u0027\u0027\u0027.format(\n\t\tid \u003d id\n\t)\n\tres \u003d system.db.runUpdateQuery(updateQuery)\n\tif res \u003c 1:\n\t\tself.getChild(\"ButtonContainer\").getChild(\"OneShotButton-Delete\").props.value \u003d 0\n\t\tself.getChild(\"ButtonContainer\").custom.status \u003d \u0027Delete Failed!\u0027\n\t\treturn False\n\t\n#\tRetrieve new data\n\tnew_data \u003d system.db.runScalarQuery(query)\n\t\n#\tInsert changes to audit_log table\n\tinsertQuery \u003d \u0027\u0027\u0027\n\tINSERT audit_log (source, table_name, action, old_data, new_data, modified_by, t_stamp)\n\tVALUES (\\\u0027External Reference Id Setting\\\u0027,\\\u0027gasmeters\\\u0027, \\\u0027DELETE\\\u0027, \\\u0027{old}\\\u0027, \\\u0027{new}\\\u0027, \\\u0027{author}\\\u0027, GETDATE())\n\t\u0027\u0027\u0027.format(\n\t\told \u003d old_data,\n\t\tnew \u003d new_data,\n\t\tauthor \u003d userName\n\t)\n\tres \u003d system.db.runUpdateQuery(insertQuery)\n\tif res \u003c 1:\n\t\tself.getChild(\"ButtonContainer\").getChild(\"OneShotButton-Delete\").props.value \u003d 0\n\t\tself.getChild(\"ButtonContainer\").custom.status \u003d \u0027Delete Failed!\u0027\n\t\treturn False\n\telse:\n\t\treturn True"
+        },
+        {
+          "name": "deleteExternalIdNotGas",
+          "params": [
+            "newData"
+          ],
+          "script": "\t\u0027\u0027\u0027 Delete external reference id of any data that is gas meter\n\tArgs:\n\t\tnewData (dict):\n\t\t\tid (int): id of either external_reference table or gasmeters table\n\t\t\tedit_col (str): name of editing column\n\t\t\tpad_id (int): id of pad\n\t\t\twellsite_id (int): id of wellsite\n\t\t\texternal_ref_id (str): external reference id\n\t\t\tdatapoint (str): datapoint of data coming from tag\n\t\t\n\tReturns True if deleted successfully, False otheriwse\n\t\u0027\u0027\u0027\n\tlogger \u003d system.util.getLogger(\u0027IgnitionSystem\u0027)\n#\tControl Input Preventing SQL Injection Attack\n\tid \u003d newData[\u0027id\u0027]\n\tpadId \u003d newData[\u0027pad_id\u0027]\n\teditCol \u003d newData[\u0027edit_col\u0027]\n\twellId \u003d newData[\u0027wellsite_id\u0027]\n\texternalId \u003d newData[\u0027external_ref_id\u0027]\n\tdatapoint \u003d newData[\u0027datapoint\u0027] \n\tif isinstance(editCol, str)\\\n\t\t\tand isinstance(padId, int)\\\n\t\t\tand isinstance(wellId, int)\\\n\t\t\tand isinstance(externalId, str)\\\n\t\t\tand isinstance(id, int)\\\n\t\t\tand isinstance(datapoint, str):\n\t\tlogger.fatal(\u0027External Reference Id Setting \u003e\u003e Unvalid input\u0027)\n\t\treturn False\n\t\n#\tPrepare data\n\tuserName \u003d self.session.props.auth.user.userName\n\told_data, new_data \u003d None, None\n\t\n#\tRetrieve old data\n\tquery \u003d \u0027\u0027\u0027\n\tSELECT * FROM external_reference\n\tWHERE id \u003d {id}\n\tFOR XML RAW\n\t\u0027\u0027\u0027.format(id \u003d id)\n\told_data \u003d system.db.runScalarQuery(query)\n\n#\tUpdate external_reference table\n\tupdateQuery \u003d \u0027\u0027\u0027\n\tDELETE FROM external_reference\n\tWHERE id \u003d {id}\n\t\u0027\u0027\u0027.format(\n\t\tid \u003d id\n\t)\n\tres \u003d system.db.runUpdateQuery(updateQuery)\n\tif res \u003c 1:\n\t\tself.getChild(\"ButtonContainer\").getChild(\"OneShotButton-Delete\").props.value \u003d 0\n\t\tself.getChild(\"ButtonContainer\").custom.status \u003d \u0027Delete Failed!\u0027\n\t\treturn False\n\t\n#\tRetrieve new data\n\tnew_data \u003d system.db.runScalarQuery(query)\n\t\n#\tInsert changes to audit_log table\n\tinsertQuery \u003d \u0027\u0027\u0027\n\tINSERT audit_log (source, table_name, action, old_data, new_data, modified_by, t_stamp)\n\tVALUES (\\\u0027External Reference Id Setting\\\u0027,\\\u0027gasmeters\\\u0027, \\\u0027DELETE\\\u0027, \\\u0027{old}\\\u0027, \\\u0027{new}\\\u0027, \\\u0027{author}\\\u0027, GETDATE())\n\t\u0027\u0027\u0027.format(\n\t\told \u003d old_data,\n\t\tnew \u003d new_data,\n\t\tauthor \u003d userName\n\t)\n\tres \u003d system.db.runUpdateQuery(insertQuery)\n\tif res \u003c 1:\n\t\tself.getChild(\"ButtonContainer\").getChild(\"OneShotButton-Delete\").props.value \u003d 0\n\t\tself.getChild(\"ButtonContainer\").custom.status \u003d \u0027Delete Failed!\u0027\n\t\treturn False\n\telse:\n\t\treturn True"
+        }
+      ],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "popupMessage",
+          "pageScope": true,
+          "script": "\tlogger \u003d system.util.getLogger(\u0027IgnitionSystem\u0027)\n\tlogger.info(str(payload[\u0027state\u0027]))\n\tself.view.custom.state \u003d payload[\u0027state\u0027]\n\tself.view.custom.openPopup \u003d payload[\u0027openPopup\u0027]",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

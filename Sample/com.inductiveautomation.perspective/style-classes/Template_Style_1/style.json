@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "backgroundAttachment": "fixed",
+      "backgroundClip": "border-box",
+      "backgroundColor": "#FFFFFF",
+      "borderColor": "#0066ff",
+      "borderStyle": "none"
+    }
+  }
+}

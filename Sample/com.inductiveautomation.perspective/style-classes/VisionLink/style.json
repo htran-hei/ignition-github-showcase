@@ -1,0 +1,16 @@
+{
+  "base": {
+    "animation": {
+      "duration": "1s",
+      "iterationCount": "1",
+      "keyframes": {
+        "0%": {
+          "marginTop": "-55px"
+        },
+        "100%": {
+          "marginTop": "10px"
+        }
+      }
+    }
+  }
+}
