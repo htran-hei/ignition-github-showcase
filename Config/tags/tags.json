@@ -1,0 +1,6 @@
+{
+  "valueSource": "expr",
+  "expression": "runScript(\u0027util.random\u0027, 1000, 0, 1000)",
+  "name": "New Tag",
+  "tagType": "AtomicTag"
+}
