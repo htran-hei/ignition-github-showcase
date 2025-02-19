@@ -1,6 +1,22 @@
 {
-  "valueSource": "expr",
-  "expression": "runScript(\u0027util.random\u0027, 1000, 0, 1000)",
-  "name": "New Tag",
-  "tagType": "AtomicTag"
+  "name": "",
+  "tagType": "Provider",
+  "tags": [
+    {
+      "valueSource": "expr",
+      "expression": "runScript(\u0027util.random\u0027, 1000, 100, 1000)",
+      "name": "New Tag 1",
+      "tagType": "AtomicTag"
+    },
+    {
+      "name": "_types_",
+      "tagType": "Folder"
+    },
+    {
+      "valueSource": "expr",
+      "expression": "runScript(\u0027util.random\u0027, 1000, 0, 1000)",
+      "name": "New Tag",
+      "tagType": "AtomicTag"
+    }
+  ]
 }
