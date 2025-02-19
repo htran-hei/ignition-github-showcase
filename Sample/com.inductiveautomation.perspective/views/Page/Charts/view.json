@@ -43,6 +43,12 @@
           "basis": "600px",
           "grow": 1
         },
+        "props": {
+          "interaction": {
+            "chartZoomLevel": 1,
+            "rangeZoomLevel": 1
+          }
+        },
         "type": "ia.chart.powerchart"
       }
     ],
